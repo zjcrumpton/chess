@@ -4,7 +4,11 @@
 class Chess
   attr_accessor :board
   def initialize
-    @board = Array.new(8) {Array.new(8)}
+    @board = Array.new(8) { Array.new(8) }
   end
 
+  # prints each row of the board out with a new line
+  def display_board
+    board.each { |row| print "#{row}\n" }
+  end
 end
