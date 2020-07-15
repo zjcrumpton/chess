@@ -4,6 +4,10 @@
 class Chess
   attr_accessor :board
   def initialize
+    build_board
+  end
+
+  def build_board
     @board = Array.new(8) { Array.new(8) }
   end
 
