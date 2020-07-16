@@ -57,9 +57,3 @@ describe Chess do
 end
 
 
-# Public API
-  #move_piece
-  #
-
-  # on setup, pawn rows should be full, and it should be full of the same type of thing
-
