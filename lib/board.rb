@@ -1,8 +1,9 @@
 # frozen_string_literal: true
-require './lib/square.rb'
+
 require 'require_all'
-require_all './lib/pieces'
 require 'pry'
+require './lib/square.rb'
+require_all './lib/pieces'
 
 # represents the chess board
 class Board
@@ -12,7 +13,6 @@ class Board
     # creates an 8x8 2d array, each index containing an instance of Square
     @board = Array.new(8) { Array.new(8) { Square.new } }
     place_pieces
-    @board
   end
 
   def place_pieces
@@ -57,5 +57,3 @@ class Board
     @board[row][square].piece = King.new
   end
 end
-
-
