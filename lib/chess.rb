@@ -1,9 +1,11 @@
 # frozen_string_literal: true
+require 'colorize'
 
 # represents the entire game of Chess itself
 class Chess
   attr_accessor :board
   def initialize
+    white_space = "\u2B1C"
     build_board
   end
 
@@ -16,3 +18,4 @@ class Chess
     board.each { |row| print "#{row}\n" }
   end
 end
+
