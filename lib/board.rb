@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-require './lib/square'
+require './lib/square.rb'
 
 # represents the chess board
 class Board
