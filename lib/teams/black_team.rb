@@ -4,7 +4,16 @@ require './lib/team.rb'
 
 # represents the black team's pieces and progress
 class BlackTeam < Team
-  attr_accessor :start_row, :pawn_row, :queen_square, :king_square
+  # defines the unicode symbols for each black piece for display purposes
+  @@symbols = {
+    pawn: '\u265F',
+    rook: '\u265C',
+    knight: '\u265E',
+    bishop: '\u265D',
+    queen: '\u265B',
+    king: '\u265A'
+  }
+
   def initialize(board)
     @board = board
     @start_row = 0
