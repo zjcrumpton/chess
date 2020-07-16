@@ -14,8 +14,8 @@ describe Chess do
 
     it "fills the pawn rows with pawns" do 
       game = Chess.new
-      expect(game.board[1].all? {|i| i.piece.class == Pawn}).to eql(false)
-      expect(game.board[7].all? {|i| i.class == Pawn}).to eql(false)
+      expect(game.board[1].all? {|i| i.piece.class == Pawn}).to eql(true)
+      expect(game.board[7].all? {|i| i.piece.class == Pawn}).to eql(true)
     end
 
     it "fills rook spaces with rooks" do
