@@ -17,6 +17,14 @@ describe Chess do
       expect(game.board[1].all? {|i| i.piece.class == Pawn}).to eql(false)
       expect(game.board[7].all? {|i| i.class == Pawn}).to eql(false)
     end
+
+    it "fills rook spaces with rooks" do
+      game = Chess.new
+      expect(game.board[0][0].piece.class).to eql(Rook)
+      expect(game.board[0][7].piece.class).to eql(Rook)
+      expect(game.board[7][0].piece.class).to eql(Rook)
+      expect(game.board[7][7].piece.class).to eql(Rook)
+    end
   end
 end
 
