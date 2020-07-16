@@ -15,5 +15,27 @@ describe Chess do
       expect(game.board[7].length).to eql(8)
       expect(game.board[8].nil?).to eql(true)
     end
+
+    it "fills the pawn rows" do 
+      game = Chess.new
+
+      expect(game.board[7].any? {|i| i == nil}).to eql(false)
+      expect(game.board[1].any? {|i| i == nil}).to eql(false)
+    end
+
+    it "fills the pawn rows with only pawns" do 
+      game = Chess.new
+
+      expect(game.board[7].all? {|i| i.class == Pawn}).to eql(false)
+      expect(game.board[7].all? {|i| i.class == Pawn}).to eql(false)
+    end
   end
 end
+
+
+# Public API
+  #move_piece
+  #
+
+  # on setup, pawn rows should be full, and it should be full of the same type of thing
+
