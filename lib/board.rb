@@ -17,11 +17,19 @@ class Board
 
   def place_pieces
     place_pawns(1)
-    place_pawns(7)
+    place_pawns(6)
+    place_rooks(0)
+    place_rooks(7)
+
   end
 
   def place_pawns(row)
     @board[row].each { |square| square.piece = Pawn.new }
+  end
+
+  def place_rooks(row)
+    @board[row].first.piece = Rook.new
+    @board[row].last.piece = Rook.new
   end
 end
 
