@@ -53,6 +53,14 @@ describe Chess do
       expect(game.board[0][4].piece.class).to eql(King)
       expect(game.board[7][3].piece.class).to eql(King)
     end
+
+    it "doesn't place any pieces in the middle of the board" do
+      game = Chess.new
+      expect(game.board[2].all? {|row| row.piece.nil? }).to eql(true)
+      expect(game.board[3].all? {|row| row.piece.nil? }).to eql(true)
+      expect(game.board[4].all? {|row| row.piece.nil? }).to eql(true)
+      expect(game.board[5].all? {|row| row.piece.nil? }).to eql(true)
+    end
   end
 end
 
