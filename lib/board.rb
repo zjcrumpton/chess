@@ -6,6 +6,7 @@ class Board
   attr_accessor :board
   def initialize
     white_space = "\u2B1C"
+    # creates an 8x8 2d array, each index containing an instance of Square
     @board = Array.new(8) { Array.new(8) { Square.new } }
   end
 end
