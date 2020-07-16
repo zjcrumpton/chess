@@ -1,7 +1,6 @@
 # frozen_string_literal: true
-require 'colorize'
+
 require './lib/board.rb'
-require 'pry'
 
 # represents the game of Chess
 class Chess
@@ -10,9 +9,11 @@ class Chess
     @board = Board.new.board
   end
 
-  # prints each row of the board out with a new line
+  # prints each row of the board out with a new line - not tested because it's a graphics related method
   def display_board
-    board.each { |row| print "#{row}\n" }
+    @board.each do |row|
+      row.each { |square| print "#{square.piece.nil? ? 'nil' : square.piece}  " }
+      print "\n"
+    end
   end
 end
-
