@@ -26,6 +26,8 @@ class Board
     place_bishops(7)
     place_queen(0, 3)
     place_queen(7, 4)
+    place_king(0, 4)
+    place_king(7, 3)
   end
 
   def place_pawns(row)
@@ -49,6 +51,10 @@ class Board
 
   def place_queen(row, square)
     @board[row][square].piece = Queen.new
+  end
+
+  def place_king(row, square)
+    @board[row][square].piece = King.new
   end
 end
 
