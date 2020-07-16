@@ -47,6 +47,12 @@ describe Chess do
       expect(game.board[0][3].piece.class).to eql(Queen)
       expect(game.board[7][4].piece.class).to eql(Queen)
     end
+
+    it "fills king spaces with kings" do
+      game = Chess.new
+      expect(game.board[0][4].piece.class).to eql(King)
+      expect(game.board[7][3].piece.class).to eql(King)
+    end
   end
 end
 
