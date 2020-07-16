@@ -1,16 +1,13 @@
 # frozen_string_literal: true
 require 'colorize'
+require './lib/board.rb'
+require 'pry'
 
-# represents the entire game of Chess itself
+# represents the game of Chess
 class Chess
   attr_accessor :board
   def initialize
-    white_space = "\u2B1C"
-    build_board
-  end
-
-  def build_board
-    @board = Array.new(8) { Array.new(8) }
+    @board = Board.new.board
   end
 
   # prints each row of the board out with a new line
