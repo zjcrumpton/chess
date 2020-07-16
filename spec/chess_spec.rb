@@ -16,6 +16,12 @@ describe Chess do
       expect(game.board[8].nil?).to eql(true)
     end
 
+    it "fills the board with Squares" do
+      game = Chess.new
+
+      expect(game.board.each {|row| row.all? {|i| i.class == Square}})
+    end
+
     it "fills the pawn rows" do 
       game = Chess.new
 
