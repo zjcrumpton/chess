@@ -20,7 +20,8 @@ class Board
     place_pawns(6)
     place_rooks(0)
     place_rooks(7)
-
+    place_knights(0)
+    place_knights(7)
   end
 
   def place_pawns(row)
@@ -30,6 +31,11 @@ class Board
   def place_rooks(row)
     @board[row].first.piece = Rook.new
     @board[row].last.piece = Rook.new
+  end
+
+  def place_knights(row)
+    @board[row][1].piece = Knight.new
+    @board[row][6].piece = Knight.new
   end
 end
 
