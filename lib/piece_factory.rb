@@ -2,9 +2,11 @@
 
 # factory function for creating pieces
 class PieceFactory
-  attr_accessor :symbol
-  def initialize(symbol)
+  attr_accessor :moves, :symbol, :board
+  def initialize(symbol, board)
     @symbol = symbol
+    @board = board
+    @moves = []
   end
 
   def move; end
