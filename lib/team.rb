@@ -3,7 +3,7 @@
 # represents a team's pieces and progress
 class Team
   attr_accessor :start_row, :pawn_row, :queen_square, :king_square, :symbols
-  def initialize(team_board)
+  def initialize(board)
     @board = board
     @color = raise 'abstract variable @color must be defined'
     @start_row = raise 'abstract variable @start_row must be defined'
