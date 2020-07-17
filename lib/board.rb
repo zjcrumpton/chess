@@ -15,9 +15,15 @@ class Board
   end
 
   def print_board
+    print "  a  b  c  d  e  f  g  h \n"
+    row_num = 8
     @board.each do |row|
+      print row_num
       row.each { |square| square.piece.nil? ? print(square.color) : print(square.piece.symbol) }
+      print row_num
       print "\n"
+      row_num -= 1
     end
+    print "  a  b  c  d  e  f  g  h \n"
   end
 end
