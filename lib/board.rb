@@ -2,7 +2,7 @@
 
 require 'require_all'
 require 'pry'
-require './lib/square.rb'
+require_relative 'square.rb'
 require_all './lib/teams'
 require_all './lib/pieces'
 
@@ -10,14 +10,13 @@ require_all './lib/pieces'
 class Board
   attr_accessor :board
   def initialize
-    white_space = "\u2B1C"
     # creates an 8x8 2d array, each index containing an instance of Square
     @board = Array.new(8) { Array.new(8) { Square.new } }
   end
 
-  def display
+  def print_board
     @board.each do |row|
-      row.each { |square| print "#{square.piece.nil? ? 'nil' : square.piece}  " }
+      row.each { |square| square.piece.nil? ? print(square.color) : print(square.piece.symbol) }
       print "\n"
     end
   end

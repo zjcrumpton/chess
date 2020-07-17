@@ -3,14 +3,14 @@
 # represents a team's pieces and progress
 class Team
   attr_accessor :start_row, :pawn_row, :queen_square, :king_square, :symbols
-  @@symbols = {
-    pawn: nil,
-    rook: nil,
-    knight: nil,
-    bishop: nil,
-    queen: nil,
-    king: nil
-  }
+  # @@symbols = {
+  #   pawn: nil,
+  #   rook: nil,
+  #   knight: nil,
+  #   bishop: nil,
+  #   queen: nil,
+  #   king: nil
+  # }
 
   def initialize(board)
     @board = board

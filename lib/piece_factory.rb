@@ -6,6 +6,7 @@ class PieceFactory
   def initialize(symbol)
     @symbol = symbol
   end
+
   def move; end
 
   def find_moves
