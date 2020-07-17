@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# represents the black team's pieces and progress
+# represents a team's pieces and progress
 class Team
   attr_accessor :start_row, :pawn_row, :queen_square, :king_square, :symbols
   @@symbols = {
@@ -32,29 +32,29 @@ class Team
   end
 
   def place_pawns
-    @board[pawn_row].each { |square| square.piece = Pawn.new(@@symbols[:pawn]) }
+    @board[pawn_row].each { |square| square.piece = Pawn.new(@symbols[:pawn]) }
   end
 
   def place_rooks
-    @board[start_row].first.piece = Rook.new(@@symbols[:rook])
-    @board[start_row].last.piece = Rook.new(@@symbols[:rook])
+    @board[start_row].first.piece = Rook.new(@symbols[:rook])
+    @board[start_row].last.piece = Rook.new(@symbols[:rook])
   end
 
   def place_knights
-    @board[start_row][1].piece = Knight.new(@@symbols[:knight])
-    @board[start_row][6].piece = Knight.new(@@symbols[:knight])
+    @board[start_row][1].piece = Knight.new(@symbols[:knight])
+    @board[start_row][6].piece = Knight.new(@symbols[:knight])
   end
 
   def place_bishops
-    @board[start_row][2].piece = Bishop.new(@@symbols[:bishop])
-    @board[start_row][5].piece = Bishop.new(@@symbols[:bishop])
+    @board[start_row][2].piece = Bishop.new(@symbols[:bishop])
+    @board[start_row][5].piece = Bishop.new(@symbols[:bishop])
   end
 
   def place_queen
-    @board[start_row][@queen_square].piece = Queen.new(@@symbols[:queen])
+    @board[start_row][@queen_square].piece = Queen.new(@symbols[:queen])
   end
 
   def place_king
-    @board[start_row][@king_square].piece = King.new(@@symbols[:king])
+    @board[start_row][@king_square].piece = King.new(@symbols[:king])
   end
 end
