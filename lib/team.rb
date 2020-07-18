@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require './lib/board.rb'
 
 # represents a team's pieces and progress
@@ -40,7 +41,5 @@ class Team
     @start_row[@king_square].piece = King.new(@symbols[:king], self, @start_row[@king_square])
   end
 
-  def select_piece(square)
-
-  end
+  def select_piece(square); end
 end

@@ -41,5 +41,6 @@ class Board
 
   def flip!
     @squares.reverse!
+    set_locations
   end
 end

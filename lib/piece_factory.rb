@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require_relative 'conv_notation.rb'
 
 # factory function for creating pieces
@@ -20,7 +21,7 @@ class PieceFactory
 
   def move(column, row)
     remove_piece
-    @board.squares[row][column].piece = Pawn.new(@symbol, self.team, self.square)
+    @board.squares[row][column].piece = Pawn.new(@symbol, team, square)
   end
 
   def remove_piece

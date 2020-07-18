@@ -20,5 +20,3 @@ end
 
 chess = Chess.new
 chess.board.display
-
-
