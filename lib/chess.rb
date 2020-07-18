@@ -9,9 +9,12 @@ require_all './lib/teams'
 class Chess
   attr_accessor :board, :teams, :display
   def initialize
-    @display = Board.new
-    @board = @display.board
-    @teams = [WhiteTeam.new(@board), BlackTeam.new(@board)]
+    @board = Board.new
+    @teams = { white: WhiteTeam.new(@board) }
+    @board.flip!
+    @teams[:black] = BlackTeam.new(@board)
   end
 end
 
+chess = Chess.new
+chess.board.display

@@ -4,15 +4,15 @@ require './lib/team.rb'
 
 # represents the white team's pieces and progress
 class WhiteTeam < Team
+  attr_reader :color
   # defines the unicode symbols for each white piece for display purposes
-
   def initialize(board)
     @board = board
-    @start_row = 7
-    @pawn_row = 6
-    @queen_square = 4
-    @king_square = 3
-
+    @start_row = @board.squares[7]
+    @pawn_row = @board.squares[6]
+    @queen_square = 3
+    @king_square = 4
+    @color = 'white'
     @symbols = {
       pawn: " \u265F ".encode('utf-8'),
       rook: " \u265C ".encode('utf-8'),
@@ -21,7 +21,6 @@ class WhiteTeam < Team
       queen: " \u265B ".encode('utf-8'),
       king: " \u265A ".encode('utf-8')
     }
-
     place_pieces
   end
 end

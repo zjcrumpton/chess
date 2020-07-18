@@ -2,10 +2,11 @@
 
 # factory function for creating pieces
 class PieceFactory
-  attr_accessor :moves, :symbol, :team, :square
+  attr_accessor :moves, :symbol, :team, :square, :color
   def initialize(symbol, team, square)
     @symbol = symbol
     @team = team
+    @color = team.color
     @square = square
     @moves = []
     find_moves
@@ -18,6 +19,6 @@ class PieceFactory
   end
 
   def remove_piece
-    self.square.piece = nil
+    @square.piece = nil
   end
 end
