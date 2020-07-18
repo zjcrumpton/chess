@@ -4,7 +4,7 @@ require './lib/team.rb'
 
 # represents the black team's pieces and progress
 class BlackTeam < Team
-  attr_reader :color
+  attr_reader :color, :board
   # defines the unicode symbols for each black piece for display purposes
   def initialize(board)
     @board = board

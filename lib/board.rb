@@ -12,6 +12,8 @@ class Board
   def initialize
     # creates an 8x8 2d array, each index containing an instance of Square
     @squares = Array.new(8) { Array.new(8) { Square.new } }
+    set_locations
+    binding.pry
   end
 
   def display
@@ -25,6 +27,16 @@ class Board
       row_num -= 1
     end
     print "  a  b  c  d  e  f  g  h \n"
+  end
+
+  def set_locations
+    @squares.each_with_index do |row, i|
+      row.each_with_index do |square, j|
+        square.row = i
+        square.column = j
+        square.location = [i, j]
+      end
+    end
   end
 
   def flip!

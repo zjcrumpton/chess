@@ -2,7 +2,7 @@
 
 # represents one space on a chess board
 class Square
-  attr_accessor :piece, :color
+  attr_accessor :piece, :color, :row, :column, :location
   # black and white square unicode characters for board display purposes
   @@colors = {
     white: " \u25FC ".encode('utf-8'),
@@ -15,6 +15,9 @@ class Square
     @piece = nil
     toggle_colors
     @color = @@color
+    @row = nil
+    @column = nil
+    @location = nil
   end
 
   def toggle_colors
