@@ -16,7 +16,14 @@ class Chess
     @board.flip!
     @teams[:black] = BlackTeam.new(@board)
   end
+
+  def piece_at(square)
+    convert(@board, square).piece
+  end
 end
 
 chess = Chess.new
 chess.board.display
+# chess.piece_at('a2').move_to('d5')
+# chess.board.display
+
