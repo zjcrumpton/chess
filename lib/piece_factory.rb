@@ -20,8 +20,9 @@ class PieceFactory
     raise 'abstract method #find_moves must be defined'
   end
 
-  def move_to(square)
-    convert(@board, square).piece = self.class.new(@symbol, team, square)
+  def move_to(destination)
+    return if !@moves.include?(convert(@board, destination))
+    convert(@board, destination).piece = self.class.new(@symbol, team, @square)
     remove_piece
   end
 

@@ -4,7 +4,7 @@ require './lib/team.rb'
 
 # represents the white team's pieces and progress
 class WhiteTeam < Team
-  attr_reader :color, :board
+  attr_reader :color, :board, :symbols
   # defines the unicode symbols for each white piece for display purposes
   def initialize(board)
     @board = board

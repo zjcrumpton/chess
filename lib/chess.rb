@@ -18,12 +18,17 @@ class Chess
   end
 
   def piece_at(square)
-    convert(@board, square).piece
+    return convert(@board, square).piece
+  end
+
+  def square_at(square)
+    return convert(@board, square)
   end
 end
 
 chess = Chess.new
 chess.board.display
-# chess.piece_at('a2').move_to('d5')
-# chess.board.display
+chess.square_at('b3').piece = Pawn.new(chess.teams[:black].symbols[:Pawn], chess.teams[:black], chess.convert(chess.board, 'b3'))
+# chess.piece_at('a7').move_to('b3')
+chess.board.display
 
