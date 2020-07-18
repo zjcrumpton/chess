@@ -4,6 +4,7 @@ require_relative 'conv_notation.rb'
 
 # factory function for creating pieces
 class PieceFactory
+  include ConvNotation
   attr_accessor :moves, :symbol, :team, :square, :color
   def initialize(symbol, team, square)
     @symbol = symbol
@@ -19,9 +20,9 @@ class PieceFactory
     raise 'abstract method #find_moves must be defined'
   end
 
-  def move(column, row)
+  def move(square)
+    convert(@board, square).piece = self.class.new(@symbol, team, square)
     remove_piece
-    @board.squares[row][column].piece = Pawn.new(@symbol, team, square)
   end
 
   def remove_piece

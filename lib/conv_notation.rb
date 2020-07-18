@@ -1,7 +1,10 @@
 # frozen_string_literal: true
-
+require 'pry'
 module ConvNotation
-  def convert(board, column, row)
+  def convert(board, square)
+    square = square.split("")
+    column = square[0]
+    row = square[1].to_i
     column = case column
              when 'a'
                0

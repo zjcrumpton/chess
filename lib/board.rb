@@ -13,7 +13,6 @@ class Board
     # creates an 8x8 2d array, each index containing an instance of Square
     @squares = Array.new(8) { Array.new(8) { Square.new } }
     set_locations
-    binding.pry
   end
 
   def display
