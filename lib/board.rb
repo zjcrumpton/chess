@@ -16,16 +16,18 @@ class Board
   end
 
   def display
-    print "  a  b  c  d  e  f  g  h \n"
+    print "   a  b  c  d  e  f  g  h \n"
     row_num = 8
     @squares.each do |row|
-      print row_num
+      print "#{row_num} "
+
       row.each { |square| square.piece.nil? ? print(square.color) : print(square.piece.symbol) }
-      print row_num
+      # row.each { |square| print(square.color)}
+      print " #{row_num}"
       print "\n"
       row_num -= 1
     end
-    print "  a  b  c  d  e  f  g  h \n"
+    print "   a  b  c  d  e  f  g  h \n"
   end
 
   def set_locations

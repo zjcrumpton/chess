@@ -1,21 +1,25 @@
 # frozen_string_literal: true
+require 'colorize'
+require 'pry'
 
 # represents one space on a chess board
 class Square
-  attr_accessor :piece, :color, :row, :column, :location
+  attr_accessor :piece, :color, :row, :column, :location, :back
   # black and white square unicode characters for board display purposes
   @@colors = {
-    white: " \u25FC ".encode('utf-8'),
-    black: " \u25FB ".encode('utf-8')
+    white: " #{@piece}  ".colorize(:background => :green),
+    black: " #{@piece}  ".colorize(:background => :blue)
   }
-  @@color = @@colors[:black]
-  @@count = 0
 
+  @@color = @@colors[:black]
+  @@back = 'black'
+  @@count = 0
   def initialize
     @piece = nil
     toggle_colors
-    @color = @@color
     @row = nil
+    @back = @@back
+    @color = @@color
     @column = nil
     @location = nil
   end
@@ -26,6 +30,7 @@ class Square
     else
       @@count += 1
       @@color = @@color == @@colors[:black] ? @@colors[:white] : @@colors[:black]
+      @@back = @@back == 'black' ? 'white' : 'black'
     end
   end
 end

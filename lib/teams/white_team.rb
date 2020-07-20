@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require './lib/team.rb'
+require 'colorize'
 
 # represents the white team's pieces and progress
 class WhiteTeam < Team

@@ -14,6 +14,7 @@ class PieceFactory
     @square = square
     @moves = []
     find_moves
+    with_back
   end
 
   def find_moves
@@ -28,5 +29,13 @@ class PieceFactory
 
   def remove_piece
     @square.piece = nil
+  end
+
+  def with_back
+    if @square.back == 'black'
+      @symbol = symbol.colorize(:background => :blue)
+    else
+      @symbol = symbol.colorize(:background => :green)
+    end 
   end
 end

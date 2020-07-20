@@ -30,7 +30,7 @@ class Team
 
   def place_bishops
     @start_row[2].piece = Bishop.new(@symbols[:bishop], self, @start_row[2])
-    @start_row[5].piece = Bishop.new(@symbols[:bishop], self, @start_row[2])
+    @start_row[5].piece = Bishop.new(@symbols[:bishop], self, @start_row[5])
   end
 
   def place_queen
