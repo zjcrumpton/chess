@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+require 'colorize'
 require_relative 'conv_notation.rb'
 
 # factory function for creating pieces
@@ -20,14 +20,27 @@ class PieceFactory
   def move_to(destination)
     find_moves
     return if !@moves.include?(convert(@board, destination))
-    
+
     remove_pieces(@board.square_at(destination))
     @board.square_at(destination).piece = self.class.new(@symbol, team, convert(@board, destination))
   end
 
   def remove_pieces(destination)
+    capture(destination)
     destination.piece = nil
     @square.piece = nil
+  end
+  
+  def capture(destination)
+    @team.captured << destination.piece unless destination.piece.nil?
+  end
+
+  def show_captured
+    print 'Captured: '
+    @team.captured.each do |piece|
+      piece.symbol = piece.symbol.colorize(:background => :black)
+      puts piece.symbol
+    end
   end
 
   def with_back
