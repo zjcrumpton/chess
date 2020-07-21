@@ -19,25 +19,34 @@ class Chess
 end
 
 chess = Chess.new
-chess.board.display
+# chess.board.display
 #  Pawn.new(chess.teams[:black].symbols[:pawn], chess.teams[:black], chess.board.square_at('b3'))
 # chess.board.piece_at('a2').move_to('a3')
 # chess.board.piece_at('a2').move_to('b7')
 # chess.board.display
-chess.board.square_at('b3').piece = Pawn.new(chess.teams[:black].symbols[:pawn], chess.teams[:black], chess.board.square_at('b3'))
+# chess.board.square_at('b3').piece = Pawn.new(chess.teams[:black].symbols[:pawn], chess.teams[:black], chess.board.square_at('b3'))
 # chess.board.piece_at('a2').move_to('a3')
-chess.board.display
+# chess.board.display
 # chess.board.piece_at('a3').move_to('a4')
 # chess.board.display
 # chess.board.piece_at('a4').move_to('a5')
 # chess.board.display
 # chess.board.piece_at('a5').move_to('a6')
 # chess.board.display
-chess.board.piece_at('a2')
+# chess.board.piece_at('a2')
 
-chess.board.piece_at('c2').move_to('b3')
-chess.board.display
-chess.board.piece_at('b3').show_captured
+# chess.board.piece_at('c2').move_to('b3')
+# chess.board.display
+# chess.board.piece_at('b3').show_captured
+# chess.board.piece_at('a2').move_to('a4')
+# chess.board.display
+# chess.board.piece_at('a4').move_to('a6')
+# chess.board.display
+# puts chess.board.piece_at('a4').move_count
+# chess.board.piece_at('a4').move_to('a5')
+# chess.board.display
+# puts chess.board.piece_at('a5').move_count
+
 
 # binding.pry
 
