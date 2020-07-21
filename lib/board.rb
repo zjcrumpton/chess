@@ -3,11 +3,13 @@
 require 'require_all'
 require 'pry'
 require_relative 'square.rb'
+require_relative 'conv_notation.rb'
 require_all './lib/teams'
 require_all './lib/pieces'
 
 # represents the chess board
 class Board
+  include ConvNotation
   attr_accessor :squares
   def initialize
     # creates an 8x8 2d array, each index containing an instance of Square
@@ -43,5 +45,13 @@ class Board
   def flip!
     @squares.reverse!
     set_locations
+  end
+
+  def piece_at(square)
+    return convert(self, square).piece
+  end
+
+  def square_at(square)
+    return convert(self, square)
   end
 end

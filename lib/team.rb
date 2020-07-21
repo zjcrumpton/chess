@@ -4,6 +4,8 @@ require './lib/board.rb'
 
 # represents a team's pieces and progress
 class Team
+attr_accessor :symbols
+
   def place_pieces
     place_pawns
     place_rooks

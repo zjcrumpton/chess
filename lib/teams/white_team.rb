@@ -5,7 +5,7 @@ require 'colorize'
 
 # represents the white team's pieces and progress
 class WhiteTeam < Team
-  attr_reader :color, :board, :symbols
+  attr_reader :color, :board
   # defines the unicode symbols for each white piece for display purposes
   def initialize(board)
     @board = board
