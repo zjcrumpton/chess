@@ -56,5 +56,18 @@ describe Pawn do
       expect(game.board.piece_at('b6').color).to eql('white')
       expect(game.board.piece_at('b5').nil?).to eql(true)
     end
+
+    it "can be promoted at the enemies starting row" do
+      game = Chess.new
+      game.board.square_at('a8').piece = Pawn.new(game.teams[:white].symbols[:pawn], game.teams[:white], game.board.square_at('a8'))
+      game.board.piece_at('a8').promote(Queen)
+      expect(game.board.piece_at('a8').class).to eql(Queen)
+    end
+
+    it "can not be promoted in rows 1-7" do
+      game = Chess.new
+      game.board.piece_at('a2').promote(Queen)
+      expect(game.board.piece_at('a2').class).to eql(Pawn)
+    end
   end
 end

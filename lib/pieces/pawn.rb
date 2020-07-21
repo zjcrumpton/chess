@@ -51,4 +51,10 @@ class Pawn < PieceFactory
   def right_pass
     @board.squares[@right.row - 1][@right.column]
   end
+
+  def promote(class_name)
+    return if class_name == Pawn || @square.row.zero? == false
+
+    @square.piece = class_name.new(@team.symbols[class_name.to_s.downcase!.to_sym], @team, @square)
+  end
 end
