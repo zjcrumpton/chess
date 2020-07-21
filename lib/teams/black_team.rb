@@ -4,7 +4,7 @@ require './lib/team.rb'
 
 # represents the black team's pieces and progress
 class BlackTeam < Team
-  attr_reader :color, :board
+  attr_reader :color, :board, :captured
   # defines the unicode symbols for each black piece for display purposes
   def initialize(board)
     @board = board
@@ -22,6 +22,7 @@ class BlackTeam < Team
       king: " \u2654 ".encode('utf-8')
     }
     place_pieces
+    @captured = []
     @board.flip!
   end
 end
