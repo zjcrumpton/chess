@@ -51,11 +51,10 @@ describe Pawn do
       game.board.piece_at('g2').move_to('g4')
       game.board.flip!
       game.board.piece_at('a5').move_to('b6')
-      
+
       expect(game.board.piece_at('b6').class).to eql(Pawn)
       expect(game.board.piece_at('b6').color).to eql('white')
       expect(game.board.piece_at('b5').nil?).to eql(true)
     end
   end
-
 end
