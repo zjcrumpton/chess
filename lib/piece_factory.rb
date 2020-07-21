@@ -18,7 +18,7 @@ class PieceFactory
     @moves = []
     @move_count = 0
     find_moves
-    with_back
+    set_bg
   end
 
   def move_to(destination)
@@ -57,7 +57,7 @@ class PieceFactory
     end
   end
 
-  def with_back
+  def set_bg
     @symbol = if @square.back == 'black'
                 symbol.colorize(background: :blue)
               else
