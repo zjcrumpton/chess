@@ -6,14 +6,17 @@ require_relative 'conv_notation.rb'
 # factory function for creating pieces
 class PieceFactory
   include ConvNotation
-  attr_accessor :moves, :symbol, :team, :square, :color
+  attr_accessor :moves, :symbol, :team, :square, :color, :move_count, :left, :right
   def initialize(symbol, team, square)
     @symbol = symbol
     @team = team
     @board = team.board
     @color = team.color
     @square = square
+    @left = @board.squares[@square.row][@square.column - 1]
+    @right = @board.squares[@square.row][@square.column + 1]
     @moves = []
+    @move_count = 0
     find_moves
     with_back
   end
@@ -21,19 +24,29 @@ class PieceFactory
   def move_to(destination)
     find_moves
     return unless @moves.include?(convert(@board, destination))
-
     remove_pieces(@board.square_at(destination))
-    @board.square_at(destination).piece = self.class.new(@symbol, team, @board.square_at(destination))
+    new_piece = self.class.new(@symbol, team, @board.square_at(destination))
+    new_piece.move_count = move_count + 1
+    @board.square_at(destination).piece = new_piece
   end
 
   def remove_pieces(destination)
     capture(destination)
-    destination.piece = nil
     @square.piece = nil
   end
 
   def capture(destination)
     @team.captured << destination.piece unless destination.piece.nil?
+    capture_en_passant(destination) unless @en_passants.nil?
+    destination.piece = nil
+  end
+
+  def capture_en_passant(destination)
+    if @en_passants.include?(destination)
+      en_passant_piece =  @board.squares[destination.row + 1][destination.column]
+      @team.captured << en_passant_piece.piece
+      en_passant_piece.piece = nil
+    end
   end
 
   def show_captured

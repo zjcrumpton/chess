@@ -10,8 +10,8 @@ class BlackTeam < Team
     @board = board
     @start_row = @board.squares[7]
     @pawn_row = @board.squares[6]
-    @queen_square = 3
-    @king_square = 4
+    @queen_square = 4
+    @king_square = 3
     @color = 'black'
     @symbols = {
       pawn: " \u2659 ".encode('utf-8'),

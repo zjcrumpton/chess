@@ -44,6 +44,9 @@ class Board
 
   def flip!
     @squares.reverse!
+    @squares.each do |row|
+      row.reverse!
+    end
     set_locations
   end
 

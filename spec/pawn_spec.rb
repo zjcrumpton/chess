@@ -1,7 +1,7 @@
 require './lib/pieces/pawn.rb'
 
 describe Pawn do
-  describe "move" do
+  describe "move_to" do
     it "moves forward one space" do
       game = Chess.new
       game.board.piece_at('a2').move_to('a3')
@@ -42,6 +42,19 @@ describe Pawn do
       game = Chess.new
       game.board.piece_at('a2').move_to('a4')
       expect(game.board.piece_at('a4').class).to eql(Pawn)
+    end
+
+    it "can en passant" do
+      game = Chess.new
+      game.board.square_at('a5').piece = Pawn.new(game.teams[:white].symbols[:pawn], game.teams[:white], game.board.square_at('a5'))
+      game.board.flip!
+      game.board.piece_at('g2').move_to('g4')
+      game.board.flip!
+      game.board.piece_at('a5').move_to('b6')
+      
+      expect(game.board.piece_at('b6').class).to eql(Pawn)
+      expect(game.board.piece_at('b6').color).to eql('white')
+      expect(game.board.piece_at('b5').nil?).to eql(true)
     end
   end
 
