@@ -27,7 +27,16 @@ describe Pawn do
       expect(game.board.piece_at('b3')).to eql(nil)
     end
 
-    it
+    it "can attack enemy pawns diagonally" do
+      game = Chess.new
+      game.board.square_at('b3').piece = Pawn.new(game.teams[:black].symbols[:pawn], game.teams[:black], game.board.square_at('b3'))
+      game.board.piece_at('a2').move_to('b3')
+      expect(game.board.piece_at('b3').color).to eql('white')
+      game = Chess.new
+      game.board.square_at('b3').piece = Pawn.new(game.teams[:black].symbols[:pawn], game.teams[:black], game.board.square_at('b3'))
+      game.board.piece_at('c2').move_to('b3')
+      expect(game.board.piece_at('b3').color).to eql('white')
+    end
   end
 
 end
