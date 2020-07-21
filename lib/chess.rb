@@ -33,11 +33,11 @@ chess.board.display
 # chess.board.display
 # chess.board.piece_at('a5').move_to('a6')
 # chess.board.display
-chess.board.piece_at('a2').yeet = 'yacht'
 chess.board.piece_at('a2')
 
 chess.board.piece_at('c2').move_to('b3')
 chess.board.display
+chess.board.piece_at('b3').show_captured
 
 # binding.pry
 

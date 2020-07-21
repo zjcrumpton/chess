@@ -23,7 +23,7 @@ class PieceFactory
     return unless @moves.include?(convert(@board, destination))
 
     remove_pieces(@board.square_at(destination))
-    @board.square_at(destination).piece = self.class.new(@symbol, team, convert(@board, destination))
+    @board.square_at(destination).piece = self.class.new(@symbol, team, @board.square_at(destination))
   end
 
   def remove_pieces(destination)

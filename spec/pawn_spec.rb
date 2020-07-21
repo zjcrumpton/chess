@@ -37,6 +37,12 @@ describe Pawn do
       game.board.piece_at('c2').move_to('b3')
       expect(game.board.piece_at('b3').color).to eql('white')
     end
+
+    it "can make a double move on its first turn" do
+      game = Chess.new
+      game.board.piece_at('a2').move_to('a4')
+      expect(game.board.piece_at('a4').class).to eql(Pawn)
+    end
   end
 
 end
