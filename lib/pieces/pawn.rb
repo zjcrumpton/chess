@@ -12,18 +12,27 @@ class Pawn < PieceFactory
     double_move if @square.row == 6
     en_passant if @square.row == 3
     @moves << forward if forward.piece.nil?
-    @moves.uniq!
   end
 
   def find_attacks
     @left_attack = @board.squares[@square.row - 1][@square.column - 1]
     @right_attack = @board.squares[@square.row - 1][@square.column + 1]
+    find_left
+    find_right
+  end
 
-    if !@left_attack.nil? && !@left_attack.piece.nil?
+  def find_left
+    return unless !@left_attack.nil? && !@left_attack.piece.nil?
+
+    unless @left_attack.column > @square.column
       @moves << @left_attack if @left_attack.piece.color != @color
     end
+  end
 
-    if !@right_attack.nil? && !@right_attack.piece.nil?
+  def find_right
+    return unless !@right_attack.nil? && !@right_attack.piece.nil?
+
+    unless @right_attack.column < @square.column
       @moves << @right_attack if @right_attack.piece.color != @color
     end
   end

@@ -12,7 +12,7 @@ class Square
   }
 
   @@color = @@colors[:black]
-  @@back = 'black'
+  @@back = 'blue'
   @@count = 0
   def initialize
     @piece = nil
@@ -30,7 +30,7 @@ class Square
     else
       @@count += 1
       @@color = @@color == @@colors[:black] ? @@colors[:white] : @@colors[:black]
-      @@back = @@back == 'black' ? 'white' : 'black'
+      @@back = @@back == 'blue' ? 'green' : 'blue'
     end
   end
 end

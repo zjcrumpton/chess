@@ -23,7 +23,7 @@ class Board
     @squares.each do |row|
       print "#{row_num} "
 
-      row.each { |square| square.piece.nil? ? print(square.color) : print(square.piece.symbol) }
+      row.each { |square| square.piece.nil? ? print(square.color) : print(square.piece.symbol.colorize(background: square.back.to_sym)) }
       # row.each { |square| print(square.color)}
       print " #{row_num}"
       print "\n"
@@ -44,17 +44,15 @@ class Board
 
   def flip!
     @squares.reverse!
-    @squares.each do |row|
-      row.reverse!
-    end
+    @squares.each(&:reverse!)
     set_locations
   end
 
   def piece_at(square)
-    return convert(self, square).piece
+    convert(self, square).piece
   end
 
   def square_at(square)
-    return convert(self, square)
+    convert(self, square)
   end
 end

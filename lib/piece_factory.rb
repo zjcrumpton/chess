@@ -18,12 +18,12 @@ class PieceFactory
     @moves = []
     @move_count = 0
     find_moves
-    set_bg
   end
 
   def move_to(destination)
     find_moves
     return unless @moves.include?(convert(@board, destination))
+
     remove_pieces(@board.square_at(destination))
     new_piece = self.class.new(@symbol, team, @board.square_at(destination))
     new_piece.move_count = move_count + 1
@@ -43,7 +43,7 @@ class PieceFactory
 
   def capture_en_passant(destination)
     if @en_passants.include?(destination)
-      en_passant_piece =  @board.squares[destination.row + 1][destination.column]
+      en_passant_piece = @board.squares[destination.row + 1][destination.column]
       @team.captured << en_passant_piece.piece
       en_passant_piece.piece = nil
     end
@@ -57,11 +57,29 @@ class PieceFactory
     end
   end
 
-  def set_bg
-    @symbol = if @square.back == 'black'
-                symbol.colorize(background: :blue)
-              else
-                symbol.colorize(background: :green)
-              end
+  def show_moves
+    find_moves
+    print "   a  b  c  d  e  f  g  h\n"
+    row_num = 8
+
+    @board.squares.each do |row|
+      print "#{row_num} "
+
+      row.each do |square|
+        if square.piece.nil?
+          @moves.include?(square) ? print(" #{'*'.black} ".colorize(background: square.back.to_sym)) : print(square.color)
+        elsif @moves.include?(square) && square.piece.nil? == false
+          print square.piece.symbol.to_s.colorize(background: :red)
+        elsif square.piece == self
+          print @symbol.colorize(background: :black)
+        else
+          print square.piece.symbol.colorize(background: square.back.to_sym)
+        end
+      end
+      print " #{row_num}"
+      print "\n"
+      row_num -= 1
+    end
+    print "   a  b  c  d  e  f  g  h \n"
   end
 end
