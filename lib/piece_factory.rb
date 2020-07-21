@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'colorize'
 require_relative 'conv_notation.rb'
 
@@ -19,7 +20,7 @@ class PieceFactory
 
   def move_to(destination)
     find_moves
-    return if !@moves.include?(convert(@board, destination))
+    return unless @moves.include?(convert(@board, destination))
 
     remove_pieces(@board.square_at(destination))
     @board.square_at(destination).piece = self.class.new(@symbol, team, convert(@board, destination))
@@ -30,7 +31,7 @@ class PieceFactory
     destination.piece = nil
     @square.piece = nil
   end
-  
+
   def capture(destination)
     @team.captured << destination.piece unless destination.piece.nil?
   end
@@ -38,16 +39,16 @@ class PieceFactory
   def show_captured
     print 'Captured: '
     @team.captured.each do |piece|
-      piece.symbol = piece.symbol.colorize(:background => :black)
+      piece.symbol = piece.symbol.colorize(background: :black)
       puts piece.symbol
     end
   end
 
   def with_back
-    if @square.back == 'black'
-      @symbol = symbol.colorize(:background => :blue)
-    else
-      @symbol = symbol.colorize(:background => :green)
-    end 
+    @symbol = if @square.back == 'black'
+                symbol.colorize(background: :blue)
+              else
+                symbol.colorize(background: :green)
+              end
   end
 end
