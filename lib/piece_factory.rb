@@ -67,13 +67,13 @@ class PieceFactory
 
       row.each do |square|
         if square.piece.nil?
-          @moves.include?(square) ? print(" #{'*'.black} ".colorize(background: square.bg.to_sym)) : print('   '.colorize(background: square.bg.to_sym))
+          @moves.include?(square) ? print(" #{'*'.black} ".colorize(background: square.bg)) : print('   '.colorize(background: square.bg))
         elsif @moves.include?(square) && square.piece.nil? == false
           print square.piece.symbol.to_s.colorize(background: :red)
         elsif square.piece == self
           print @symbol.colorize(background: :black)
         else
-          print square.piece.symbol.colorize(background: square.bg.to_sym)
+          print square.piece.symbol.colorize(background: square.bg)
         end
       end
       print " #{row_num}"

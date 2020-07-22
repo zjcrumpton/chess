@@ -12,7 +12,7 @@ class Square
     @piece = nil
     toggle_colors
     @row = nil
-    @bg = @@bg
+    @bg = @@bg.to_sym
     @column = nil
     @location = nil
   end
