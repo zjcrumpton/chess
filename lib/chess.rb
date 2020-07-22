@@ -16,21 +16,21 @@ class Chess
   end
 end
 
-chess = Chess.new
-chess.board.piece_at('d2').show_moves
-chess.board.piece_at('d2').move_to('d4')
-chess.board.piece_at('d4').show_moves
-chess.board.display
-chess.board.piece_at('d4').move_to('d5')
-chess.board.piece_at('d5').show_moves
-chess.board.flip!
-chess.board.piece_at('f2').show_moves
-chess.board.display
-chess.board.piece_at('f2').move_to('f4')
-chess.board.flip!
-chess.board.piece_at('d5').show_moves
-chess.board.piece_at('d5').move_to('c6')
-chess.board.piece_at('c6').show_moves
+# chess = Chess.new
+# chess.board.piece_at('d2').show_moves
+# chess.board.piece_at('d2').move_to('d4')
+# chess.board.piece_at('d4').show_moves
+# chess.board.display
+# chess.board.piece_at('d4').move_to('d5')
+# chess.board.piece_at('d5').show_moves
+# chess.board.flip!
+# chess.board.piece_at('f2').show_moves
+# chess.board.display
+# chess.board.piece_at('f2').move_to('f4')
+# chess.board.flip!
+# chess.board.piece_at('d5').show_moves
+# chess.board.piece_at('d5').move_to('c6')
+# chess.board.piece_at('c6').show_moves
 
 
 
