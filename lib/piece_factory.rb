@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
 require 'colorize'
-require_relative 'conv_notation.rb'
 
 # factory function for creating pieces
 class PieceFactory
-  include ConvNotation
   attr_accessor :moves, :symbol, :team, :square, :move_count, :left, :right
   def initialize(team, square)
     @symbol = team.symbols[self.class.to_s.to_sym]
@@ -21,7 +19,7 @@ class PieceFactory
 
   def move_to(destination)
     find_moves
-    return unless @moves.include?(convert(@board, destination))
+    return unless @moves.include?(@board.square_at(destination))
 
     remove_pieces(@board.square_at(destination))
     new_piece = self.class.new(team, @board.square_at(destination))
