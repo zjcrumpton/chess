@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
 require 'colorize'
+require './lib/modules/visualizer.rb'
 
 # factory function for creating pieces
 class PieceFactory
+  include MoveVisuals
   attr_accessor :moves, :symbol, :team, :square, :move_count, :left, :right
   def initialize(team, square)
     @symbol = team.symbols[self.class.to_s.to_sym]
@@ -52,31 +54,5 @@ class PieceFactory
       piece.symbol = piece.symbol.colorize(background: :black)
       puts piece.symbol
     end
-  end
-
-  def show_moves
-    find_moves
-    print "   a  b  c  d  e  f  g  h\n"
-    row_num = 8
-
-    @board.squares.each do |row|
-      print "#{row_num} "
-
-      row.each do |square|
-        if square.piece.nil?
-          @moves.include?(square) ? print(" #{'*'.black} ".colorize(background: square.bg)) : print('   '.colorize(background: square.bg))
-        elsif @moves.include?(square) && square.piece.nil? == false
-          print square.piece.symbol.to_s.colorize(background: :red)
-        elsif square.piece == self
-          print "#{@symbol}".colorize(background: :black)
-        else
-          print "#{square.piece.symbol}".colorize(background: square.bg)
-        end
-      end
-      print " #{row_num}"
-      print "\n"
-      row_num -= 1
-    end
-    print "   a  b  c  d  e  f  g  h \n"
   end
 end
