@@ -14,12 +14,12 @@ class BlackTeam < Team
     @king_square = 3
     @color = 'black'
     @symbols = {
-      pawn: " \u2659 ".encode('utf-8'),
-      rook: " \u2656 ".encode('utf-8'),
-      knight: " \u2658 ".encode('utf-8'),
-      bishop: " \u2657 ".encode('utf-8'),
-      queen: " \u2655 ".encode('utf-8'),
-      king: " \u2654 ".encode('utf-8')
+      Pawn: " \u2659 ".encode('utf-8'),
+      Rook: " \u2656 ".encode('utf-8'),
+      Knight: " \u2658 ".encode('utf-8'),
+      Bishop: " \u2657 ".encode('utf-8'),
+      Queen: " \u2655 ".encode('utf-8'),
+      King: " \u2654 ".encode('utf-8')
     }
     place_pieces
     @captured = []

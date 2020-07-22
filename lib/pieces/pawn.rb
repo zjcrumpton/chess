@@ -25,7 +25,7 @@ class Pawn < PieceFactory
     return unless !@left_attack.nil? && !@left_attack.piece.nil?
 
     unless @left_attack.column > @square.column
-      @moves << @left_attack if @left_attack.piece.color != @color
+      @moves << @left_attack if @left_attack.piece.team != @team
     end
   end
 
@@ -33,7 +33,7 @@ class Pawn < PieceFactory
     return unless !@right_attack.nil? && !@right_attack.piece.nil?
 
     unless @right_attack.column < @square.column
-      @moves << @right_attack if @right_attack.piece.color != @color
+      @moves << @right_attack if @right_attack.piece.team != @team
     end
   end
 
@@ -64,6 +64,6 @@ class Pawn < PieceFactory
   def promote(class_name)
     return if class_name == Pawn || @square.row.zero? == false
 
-    @square.piece = class_name.new(@team.symbols[class_name.to_s.downcase!.to_sym], @team, @square)
+    @square.piece = class_name.new(@team, @square)
   end
 end

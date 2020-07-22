@@ -29,13 +29,13 @@ describe Pawn do
 
     it "can attack enemy pawns diagonally" do
       game = Chess.new
-      game.board.square_at('b3').piece = Pawn.new(game.teams[:black].symbols[:pawn], game.teams[:black], game.board.square_at('b3'))
+      game.board.square_at('b3').piece = Pawn.new(game.teams[:black], game.board.square_at('b3'))
       game.board.piece_at('a2').move_to('b3')
-      expect(game.board.piece_at('b3').color).to eql('white')
+      expect(game.board.piece_at('b3').team).to eql(game.teams[:white])
       game = Chess.new
-      game.board.square_at('b3').piece = Pawn.new(game.teams[:black].symbols[:pawn], game.teams[:black], game.board.square_at('b3'))
+      game.board.square_at('b3').piece = Pawn.new(game.teams[:black], game.board.square_at('b3'))
       game.board.piece_at('c2').move_to('b3')
-      expect(game.board.piece_at('b3').color).to eql('white')
+      expect(game.board.piece_at('b3').team).to eql(game.teams[:white])
     end
 
     it "can make a double move on its first turn" do
@@ -46,20 +46,20 @@ describe Pawn do
 
     it "can en passant" do
       game = Chess.new
-      game.board.square_at('a5').piece = Pawn.new(game.teams[:white].symbols[:pawn], game.teams[:white], game.board.square_at('a5'))
+      game.board.square_at('a5').piece = Pawn.new(game.teams[:white], game.board.square_at('a5'))
       game.board.flip!
       game.board.piece_at('g2').move_to('g4')
       game.board.flip!
       game.board.piece_at('a5').move_to('b6')
 
       expect(game.board.piece_at('b6').class).to eql(Pawn)
-      expect(game.board.piece_at('b6').color).to eql('white')
+      expect(game.board.piece_at('b6').team).to eql(game.teams[:white])
       expect(game.board.piece_at('b5').nil?).to eql(true)
     end
 
     it "can be promoted at the enemies starting row" do
       game = Chess.new
-      game.board.square_at('a8').piece = Pawn.new(game.teams[:white].symbols[:pawn], game.teams[:white], game.board.square_at('a8'))
+      game.board.square_at('a8').piece = Pawn.new(game.teams[:white], game.board.square_at('a8'))
       game.board.piece_at('a8').promote(Queen)
       expect(game.board.piece_at('a8').class).to eql(Queen)
     end

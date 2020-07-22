@@ -6,12 +6,11 @@ require_relative 'conv_notation.rb'
 # factory function for creating pieces
 class PieceFactory
   include ConvNotation
-  attr_accessor :moves, :symbol, :team, :square, :color, :move_count, :left, :right
-  def initialize(symbol, team, square)
-    @symbol = symbol
+  attr_accessor :moves, :symbol, :team, :square, :move_count, :left, :right
+  def initialize(team, square)
+    @symbol = team.symbols[self.class.to_s.to_sym]
     @team = team
     @board = team.board
-    @color = team.color
     @square = square
     @left = @board.squares[@square.row][@square.column - 1]
     @right = @board.squares[@square.row][@square.column + 1]
@@ -25,7 +24,7 @@ class PieceFactory
     return unless @moves.include?(convert(@board, destination))
 
     remove_pieces(@board.square_at(destination))
-    new_piece = self.class.new(@symbol, team, @board.square_at(destination))
+    new_piece = self.class.new(team, @board.square_at(destination))
     new_piece.move_count = move_count + 1
     @board.square_at(destination).piece = new_piece
   end
@@ -71,9 +70,9 @@ class PieceFactory
         elsif @moves.include?(square) && square.piece.nil? == false
           print square.piece.symbol.to_s.colorize(background: :red)
         elsif square.piece == self
-          print @symbol.colorize(background: :black)
+          print "#{@symbol}".colorize(background: :black)
         else
-          print square.piece.symbol.colorize(background: square.bg)
+          print "#{square.piece.symbol}".colorize(background: square.bg)
         end
       end
       print " #{row_num}"
