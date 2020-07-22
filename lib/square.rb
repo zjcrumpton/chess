@@ -4,22 +4,15 @@ require 'pry'
 
 # represents one space on a chess board
 class Square
-  attr_accessor :piece, :color, :row, :column, :location, :back
-  # black and white square unicode characters for board display purposes
-  @@colors = {
-    white: " #{@piece}  ".colorize(:background => :green),
-    black: " #{@piece}  ".colorize(:background => :blue)
-  }
+  attr_accessor :piece, :color, :row, :column, :location, :bg
 
-  @@color = @@colors[:black]
-  @@back = 'blue'
+  @@bg = 'blue'
   @@count = 0
   def initialize
     @piece = nil
     toggle_colors
     @row = nil
-    @back = @@back
-    @color = @@color
+    @bg = @@bg
     @column = nil
     @location = nil
   end
@@ -29,8 +22,7 @@ class Square
       @@count = 1
     else
       @@count += 1
-      @@color = @@color == @@colors[:black] ? @@colors[:white] : @@colors[:black]
-      @@back = @@back == 'blue' ? 'green' : 'blue'
+      @@bg = @@bg == 'blue' ? 'green' : 'blue'
     end
   end
 end

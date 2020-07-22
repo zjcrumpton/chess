@@ -23,7 +23,7 @@ class Board
     @squares.each do |row|
       print "#{row_num} "
 
-      row.each { |square| square.piece.nil? ? print(square.color) : print(square.piece.symbol.colorize(background: square.back.to_sym)) }
+      row.each { |square| square.piece.nil? ? print('   '.colorize(background: square.bg.to_sym)) : print(square.piece.symbol.colorize(background: square.bg.to_sym)) }
       # row.each { |square| print(square.color)}
       print " #{row_num}"
       print "\n"
