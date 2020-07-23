@@ -52,4 +52,8 @@ module Find
   def square_at(square)
     find(square)
   end
+
+  def remove_at(square)
+    square_at(square).piece = nil
+  end
 end
