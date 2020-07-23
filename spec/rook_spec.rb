@@ -15,8 +15,6 @@ describe Rook do
       expect(game.board.piece_at('e6').class).to eql(Rook)
       game.board.piece_at('e6').move_to('e5')
       expect(game.board.piece_at('e5').class).to eql(Rook)
-
-
     end
 
     it "can capture enemy pieces" do
