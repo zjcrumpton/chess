@@ -5,7 +5,6 @@ describe Queen do
     it "can move to any unobstructed empty square" do
       game = Chess.new
       game.board.square_at('d5').piece = Queen.new(game.teams[:white], game.board.square_at('d5'))
-      game.board.piece_at('d5').show_moves
       game.board.piece_at('d5').move_to('c6')
       expect(game.board.piece_at('c6').class).to eql(Queen)
       game.board.piece_at('c6').move_to('b5')
