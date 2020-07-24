@@ -13,6 +13,4 @@ class Bishop < PieceFactory
     add_moves_for('dl_diag')
     add_moves_for('dr_diag')
   end
-
-
 end

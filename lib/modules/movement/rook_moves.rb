@@ -2,23 +2,6 @@
 
 # finds valid Rooklike movements
 module RookMoves
-  def add_moves_for(direction)
-    @i = 0
-    moves_for(direction)
-  end
-
-  def moves_for(direction)
-    next_move_for(direction)
-    return if @move.nil?
-
-    if @move.piece.nil?
-      @moves << @move
-      moves_for(direction) unless @move.edge?
-    else
-      @moves << @move unless @move.piece.team == @team
-    end
-  end
-
   def next_move_for(direction)
     @i += 1
     if direction == 'up'
