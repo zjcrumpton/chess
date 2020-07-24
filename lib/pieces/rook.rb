@@ -13,6 +13,4 @@ class Rook < PieceFactory
     add_moves_for('right')
     add_moves_for('down')
   end
-
-  # TODO: Castling
 end
