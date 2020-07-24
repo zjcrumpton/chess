@@ -14,5 +14,12 @@ describe Bishop do
       game.board.piece_at('c4').move_to('d5')
       expect(game.board.piece_at('d5').class).to eql(Bishop)
     end
+
+    it "can capture enemy pieces" do
+      game = Chess.new
+      game.board.square_at('d5').piece = Bishop.new(game.teams[:white], game.board.square_at('d5'))
+      game.board.piece_at('d5').move_to('b7')
+      expect(game.board.piece_at('b7').class).to eql(Bishop)
+    end
   end
 end
