@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# finds valid Rooklike movements
+# finds valid Bishoplike movements
 module BishopMoves
   def add_moves_for(direction)
     @i = 0
