@@ -13,7 +13,7 @@ module RookMoves
 
     if @move.piece.nil?
       @moves << @move
-      moves_for(direction)
+      moves_for(direction) unless @move.edge?
     else
       @moves << @move unless @move.piece.team == @team
     end

@@ -12,6 +12,7 @@ class Board
     # creates an 8x8 2d array, each index containing an instance of Square
     @squares = Array.new(8) { Array.new(8) { Square.new } }
     set_locations
+    set_edges
   end
 
   def set_locations
@@ -20,6 +21,15 @@ class Board
         square.row = i
         square.column = j
         square.location = [i, j]
+      end
+    end
+  end
+
+
+  def set_edges
+    @squares.each do |row|
+      row.each do |square|
+        square.edge = true if square.row == 0 || square.column == 0
       end
     end
   end

@@ -4,7 +4,7 @@ require 'pry'
 
 # represents one space on a chess board
 class Square
-  attr_accessor :piece, :color, :row, :column, :location, :bg
+  attr_accessor :piece, :color, :row, :column, :location, :bg, :edge
 
   @@bg = 'blue'
   @@count = 0
@@ -15,6 +15,7 @@ class Square
     @bg = @@bg.to_sym
     @column = nil
     @location = nil
+    @edge = false
   end
 
   def toggle_colors
@@ -24,5 +25,9 @@ class Square
       @@count += 1
       @@bg = @@bg == 'blue' ? 'green' : 'blue'
     end
+  end
+
+  def edge?
+    @edge == true ? true : false
   end
 end
