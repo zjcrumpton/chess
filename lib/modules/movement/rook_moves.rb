@@ -8,7 +8,6 @@ module RookMoves
   end
 
   def moves_for(direction)
-    @i += 1
     next_move_for(direction)
     return if @move.nil?
 
@@ -21,13 +20,22 @@ module RookMoves
   end
 
   def next_move_for(direction)
+    @i += 1
     if direction == 'up'
+      return @move = nil if @board.squares[@square.row - @i].nil?
+
       @move = @board.squares[@square.row - @i][@square.column]
     elsif direction == 'left'
+      return @move = nil if @board.squares[@square.row][@square.column - @i].nil?
+
       @move = @board.squares[@square.row][@square.column - @i]
     elsif direction == 'right'
+      return @move = nil if @board.squares[@square.row][@square.column + @i].nil?
+
       @move = @board.squares[@square.row][@square.column + @i]
     elsif direction == 'down'
+      return @move = nil if @board.squares[@square.row + @i].nil?
+
       @move = @board.squares[@square.row + @i][@square.column]
     end
   end

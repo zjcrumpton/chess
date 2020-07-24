@@ -15,6 +15,7 @@ class PieceFactory
     @left = @board.squares[@square.row][@square.column - 1]
     @right = @board.squares[@square.row][@square.column + 1]
     @move_count = 0
+    find_moves
   end
 
   def move_to(destination)

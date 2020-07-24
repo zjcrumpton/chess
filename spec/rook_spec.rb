@@ -25,5 +25,16 @@ describe Rook do
       game.board.piece_at('d7').move_to('c7')
       expect(game.board.piece_at('c7').class).to eql(Rook)
     end
+
+    #TODO - add castling test once king is functional
+    # it "can castle" do
+    #   game = Chess.new
+    #   # game.board.display
+    #   game.board.remove_at('b1')
+    #   game.board.remove_at('c1')
+    #   game.board.remove_at('d1')
+    #   game.board.piece_at('a1').show_moves
+
+    # end
   end
 end

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require './lib/piece_factory.rb'
 require './lib/modules/movement/rook_moves.rb'
 
@@ -13,5 +14,5 @@ class Rook < PieceFactory
     add_moves_for('down')
   end
 
-  #TODO: Castling
+  # TODO: Castling
 end
