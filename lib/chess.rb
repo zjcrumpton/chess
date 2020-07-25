@@ -32,14 +32,6 @@ end
 # chess.board.piece_at('d5').move_to('c6')
 # chess.board.piece_at('c6').show_moves
 
-
-
-
-
-
-
-
-
 # chess.board.display
 #  Pawn.new(chess.teams[:black].symbols[:pawn], chess.teams[:black], chess.board.square_at('b3'))
 # chess.board.piece_at('a2').move_to('a3')
@@ -68,6 +60,4 @@ end
 # chess.board.display
 # puts chess.board.piece_at('a5').move_count
 
-
 # binding.pry
-

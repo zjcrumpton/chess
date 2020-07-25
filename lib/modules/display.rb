@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'require_all'
 require_all './lib/teams'
 require_all './lib/pieces'
@@ -37,11 +38,11 @@ module Display
   end
 
   def print_row(row)
-    row.each do |square| 
+    row.each do |square|
       if square.piece.nil?
         print '   '.colorize(background: square.bg)
       else
-       print "#{square.piece.symbol}".colorize(background: square.bg)
+        printsquare.piece.symbol.to_s.colorize(background: square.bg)
       end
     end
   end

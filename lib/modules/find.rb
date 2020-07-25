@@ -1,9 +1,10 @@
 # frozen_string_literal: true
+
 require 'pry'
 
 module Find
   def find(square)
-    square = square.split("")
+    square = square.split('')
     column = square[0]
     row = square[1].to_i
     column = case column

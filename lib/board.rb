@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # # frozen_string_literal: true
 
 require 'require_all'
@@ -6,7 +8,8 @@ require_all './lib/modules'
 
 # represents the chess board
 class Board
-  include Display, Find
+  include Find
+  include Display
   attr_accessor :squares
   def initialize
     # creates an 8x8 2d array, each index containing an instance of Square
@@ -24,7 +27,6 @@ class Board
       end
     end
   end
-
 
   def set_edges
     @squares.each do |row|

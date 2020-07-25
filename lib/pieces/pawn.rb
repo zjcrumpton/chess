@@ -41,7 +41,8 @@ class Pawn < PieceFactory
   def forward
     @board.squares[@square.row - 1][@square.column]
   end
-  #TODO: fix double moving through pieces
+
+  # TODO: fix double moving through pieces
   def double_move
     double = @board.squares[@square.row - 2][@square.column]
     @moves << double

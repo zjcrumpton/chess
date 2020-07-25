@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'colorize'
 require 'pry'
 
@@ -28,6 +29,6 @@ class Square
   end
 
   def edge?
-    @edge == true ? true : false
+    @edge == true
   end
 end

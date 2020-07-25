@@ -62,7 +62,7 @@ class PieceFactory
 
   def moves_for(direction)
     next_move_for(direction)
-    return if @move.nil? 
+    return if @move.nil?
 
     if @move.piece.nil?
       @moves << @move

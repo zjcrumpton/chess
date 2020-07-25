@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'require_all'
 # require '/lib/piece_factory.rb'
 
@@ -19,15 +20,15 @@ module MoveVisuals
   end
 
   def print_row(row)
-    row.each do |square| 
+    row.each do |square|
       if square.piece.nil?
         @moves.include?(square) ? print(" #{'*'.black} ".colorize(background: square.bg)) : print('   '.colorize(background: square.bg))
       elsif @moves.include?(square) && square.piece.nil? == false
         print square.piece.symbol.to_s.colorize(background: :red)
       elsif square.piece == self
-        print "#{@symbol}".colorize(background: :black)
+        print @symbol.to_s.colorize(background: :black)
       else
-       print "#{square.piece.symbol}".colorize(background: square.bg)
+        printsquare.piece.symbol.to_s.colorize(background: square.bg)
       end
     end
   end

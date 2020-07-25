@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module QueenMoves
+module KingMoves
   def next_move_for(direction)
     @i += 1
     if direction == 'ul_diag'
@@ -57,4 +57,17 @@ module QueenMoves
       @move = nil if @move.row < @square.row
     end
   end
+
+  def moves_for(direction)
+    next_move_for(direction)
+    return if @move.nil?
+
+    if @move.piece.nil?
+      @moves << @move
+    else
+      @moves << @move unless @move.piece.team == @team
+    end
+  end
 end
+
+# TODO: - Gaurd Clauses to stop king move overflow, look into double gaurd clauses for Queen, Rook, and Knight because of the two axes of movement for these pieces
