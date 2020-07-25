@@ -19,5 +19,14 @@ describe King do
       game.board.piece_at('e4').move_to('e5')
       expect(game.board.piece_at('e5').class).to eql(King)
     end
+
+    it "can't move into spaces under attack (check)" do
+      game = Chess.new
+      game.board.square_at('e5').piece = Pawn.new(game.teams[:black], game.board.square_at('e5'))
+      game.board.square_at('e4').piece = King.new(game.teams[:white], game.board.square_at('e4'))
+      game.board.piece_at('e4').show_moves
+      game.board.piece_at('e4').move_to('f4')
+      expect(game.board.piece_at('f4').class.nil?).to eql(true)
+    end
   end
 end
