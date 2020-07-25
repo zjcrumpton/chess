@@ -28,7 +28,7 @@ module MoveVisuals
       elsif square.piece == self
         print @symbol.to_s.colorize(background: :black)
       else
-        printsquare.piece.symbol.to_s.colorize(background: square.bg)
+        print square.piece.symbol.to_s.colorize(background: square.bg)
       end
     end
   end
