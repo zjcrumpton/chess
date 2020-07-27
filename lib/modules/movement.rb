@@ -56,6 +56,7 @@ module MoveList
 
       @move = @board.squares[@square.row + @i][@square.column]
       @move = nil if @move.row < @square.row
+    # Pawn Specific Moves 
     elsif direction == 'double_up'
       return @move = nil if @board.squares[@square.row - 2].nil?
 
