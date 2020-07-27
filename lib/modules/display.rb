@@ -42,7 +42,7 @@ module Display
       if square.piece.nil?
         print '   '.colorize(background: square.bg)
       else
-        printsquare.piece.symbol.to_s.colorize(background: square.bg)
+        print square.piece.symbol.to_s.colorize(background: square.bg)
       end
     end
   end
