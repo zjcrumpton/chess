@@ -2,10 +2,14 @@
 
 require 'colorize'
 require './lib/modules/visualizer.rb'
+require './lib/modules/flip_moves.rb'
+require './lib/modules/movement.rb'
 
 # factory function for creating pieces
 class PieceFactory
+  include MoveList
   include MoveVisuals
+  include FlipMoves
   attr_accessor :moves, :symbol, :team, :square, :move_count, :left, :right
   def initialize(team, square)
     @symbol = team.symbols[self.class.to_s.to_sym]
@@ -19,6 +23,7 @@ class PieceFactory
   end
 
   def move_to(destination)
+    # @board.set_checks
     find_moves
     return unless @moves.include?(@board.square_at(destination))
 

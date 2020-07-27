@@ -1,7 +1,5 @@
 # frozen_string_literal: true
-
 require './lib/piece_factory.rb'
-require './lib/modules/movement/knight_moves.rb'
 
 # represents the knight piece in chess
 class Knight < PieceFactory
@@ -16,5 +14,16 @@ class Knight < PieceFactory
     add_moves_for('right_down')
     add_moves_for('right_up')
     add_moves_for('up_right')
+  end
+
+  def moves_for(direction)
+    next_move_for(direction)
+    return if @move.nil?
+
+    if @move.piece.nil?
+      @moves << @move
+    else
+      @moves << @move unless @move.piece.team == @team
+    end
   end
 end

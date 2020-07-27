@@ -5,12 +5,12 @@ require 'pry'
 
 # represents the pawn piece in chess
 class Pawn < PieceFactory
-  attr_accessor :en_passants
+  attr_accessor :en_passants, :double, :anti_forward
 
   def find_moves
     @moves = []
     find_attacks
-    double_move if @square.row == 6
+    double_move if @square.row == 6 && @board.squares[@square.row - 1][@square.column].piece.nil? && forward.piece.nil?
     en_passant if @square.row == 3
     @moves << forward if forward.piece.nil?
   end
@@ -39,12 +39,13 @@ class Pawn < PieceFactory
   end
 
   def forward
-    @board.squares[@square.row - 1][@square.column]
+    @anti_forward = @board.squares[@square.row + 1][@square.column]
+    @forward = @board.squares[@square.row - 1][@square.column]
   end
 
   # TODO: fix double moving through pieces
   def double_move
-    double = @board.squares[@square.row - 2][@square.column]
+    @double = @board.squares[@square.row - 2][@square.column]
     @moves << double
   end
 
