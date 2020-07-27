@@ -46,4 +46,25 @@ module Display
       end
     end
   end
+
+  def display_checks
+    print_alpha('top')
+    @squares.each do |row|
+      print_row_num('left')
+      print_checks(row)
+      print_row_num('right')
+    end
+    print_alpha('bottom')
+    @@row_num = 8 # resets row_num for the next time display is called
+  end
+
+  def print_checks(row)
+    row.each do |square|
+      if square.check?
+        print ' C '.colorize(background: square.bg)
+      else
+        print '   '.colorize(background: square.bg)
+      end
+    end
+  end
 end

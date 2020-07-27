@@ -5,7 +5,7 @@ require 'pry'
 
 # represents one space on a chess board
 class Square
-  attr_accessor :piece, :color, :row, :column, :location, :bg, :edge
+  attr_accessor :piece, :color, :row, :column, :location, :bg, :edge, :check
 
   @@bg = 'blue'
   @@count = 0
@@ -17,6 +17,7 @@ class Square
     @column = nil
     @location = nil
     @edge = false
+    @check = false
   end
 
   def toggle_colors
@@ -30,5 +31,9 @@ class Square
 
   def edge?
     @edge == true
+  end
+
+  def check?
+    @check == true
   end
 end

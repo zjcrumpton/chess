@@ -19,6 +19,7 @@ class Knight < PieceFactory
   def moves_for(direction)
     next_move_for(direction)
     return if @move.nil?
+    add_check
 
     if @move.piece.nil?
       @moves << @move

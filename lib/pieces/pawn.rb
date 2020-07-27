@@ -5,10 +5,12 @@ require 'pry'
 
 # represents the pawn piece in chess
 class Pawn < PieceFactory
-  attr_accessor :en_passants, :double, :anti_forward
+  attr_accessor :en_passants, :double, :forward
 
   def find_moves
     @moves = []
+    @forward = nil
+    @double = nil
     @en_passants = []
     add_moves_for('up')
     add_moves_for('ul_diag')
@@ -21,8 +23,10 @@ class Pawn < PieceFactory
 
     if @moves.empty? 
       @moves << @move if @move.piece.nil?
+      @forward = @board.squares[switch(@move.location[0] - 1)][@move.location[1]]
       moves_for('double_up') if @square.row == 6
     elsif direction == 'double_up' && @move.piece.nil?
+      @double = @board.squares[switch(@move.location[0] - 2)][@move.location[1]]
       @moves << @move
     elsif @move.piece.nil? == false
       @moves << @move unless @move.piece.team == @team
@@ -43,3 +47,5 @@ class Pawn < PieceFactory
     @square.piece = class_name.new(@team, @square)
   end
 end
+
+#TODO - Include Pawns in check calculations

@@ -67,6 +67,7 @@ class PieceFactory
   def moves_for(direction)
     next_move_for(direction)
     return if @move.nil?
+    add_check
 
     if @move.piece.nil?
       @moves << @move
@@ -75,4 +76,13 @@ class PieceFactory
       @moves << @move unless @move.piece.team == @team
     end
   end
+
+  def add_check
+    # binding.pry
+    # return if @team.class == @board.current_team
+    # flip = @board.squares[switch(@move.location[0])][@move.location[1]]
+    # flip.check = true
+  end
+
+
 end

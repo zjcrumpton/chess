@@ -10,12 +10,13 @@ require_all './lib/modules'
 class Board
   include Find
   include Display
-  attr_accessor :squares
+  attr_accessor :squares, :current_team
   def initialize
     # creates an 8x8 2d array, each index containing an instance of Square
     @squares = Array.new(8) { Array.new(8) { Square.new } }
     set_locations
     set_edges
+    @current_team = WhiteTeam
   end
 
   def set_locations
@@ -40,5 +41,10 @@ class Board
     @squares.reverse!
     @squares.each(&:reverse!)
     set_locations
+    if @current_team == WhiteTeam
+      @current_team = BlackTeam
+    else
+      @current_team = WhiteTeam 
+    end
   end
 end
