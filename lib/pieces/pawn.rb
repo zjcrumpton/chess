@@ -9,60 +9,39 @@ class Pawn < PieceFactory
 
   def find_moves
     @moves = []
-    find_attacks
-    double_move if @square.row == 6 && @board.squares[@square.row - 1][@square.column].piece.nil? && forward.piece.nil?
-    en_passant if @square.row == 3
-    @moves << forward if forward.piece.nil?
+    add_moves_for('up')
+    add_moves_for('ul_diag')
+    add_moves_for('ur_diag')
   end
 
-  def find_attacks
-    @left_attack = @board.squares[@square.row - 1][@square.column - 1]
-    @right_attack = @board.squares[@square.row - 1][@square.column + 1]
-    find_left
-    find_right
-  end
+  def moves_for(direction)
+    next_move_for(direction)
+    return if @move.nil?
 
-  def find_left
-    return unless !@left_attack.nil? && !@left_attack.piece.nil?
-
-    unless @left_attack.column > @square.column
-      @moves << @left_attack if @left_attack.piece.team != @team
+    if @moves.empty? 
+      @moves << @move if @move.piece.nil?
+      moves_for('double_up') if @move_count == 0
+    elsif direction == 'double_up' && @move.piece.nil?
+      @moves << @move
+    elsif @move.piece.nil? == false
+      @moves << @move unless @move.piece.team == false
     end
-  end
+  end  
 
-  def find_right
-    return unless !@right_attack.nil? && !@right_attack.piece.nil?
+  # def en_passant
+  #   @en_passants = []
+  #   @en_passants << left_pass if !left.piece.nil? && left.piece.move_count == 1 && left_pass.piece.nil?
+  #   @en_passants << right_pass if !right.piece.nil? && right.piece.move_count == 1 && right_pass.piece.nil?
+  #   @en_passants.each { |move| @moves << move }
+  # end
 
-    unless @right_attack.column < @square.column
-      @moves << @right_attack if @right_attack.piece.team != @team
-    end
-  end
+  # def left_pass
+  #   @board.squares[@left.row - 1][@left.column]
+  # end
 
-  def forward
-    @anti_forward = @board.squares[@square.row + 1][@square.column]
-    @forward = @board.squares[@square.row - 1][@square.column]
-  end
-
-  # TODO: fix double moving through pieces
-  def double_move
-    @double = @board.squares[@square.row - 2][@square.column]
-    @moves << double
-  end
-
-  def en_passant
-    @en_passants = []
-    @en_passants << left_pass if !left.piece.nil? && left.piece.move_count == 1 && left_pass.piece.nil?
-    @en_passants << right_pass if !right.piece.nil? && right.piece.move_count == 1 && right_pass.piece.nil?
-    @en_passants.each { |move| @moves << move }
-  end
-
-  def left_pass
-    @board.squares[@left.row - 1][@left.column]
-  end
-
-  def right_pass
-    @board.squares[@right.row - 1][@right.column]
-  end
+  # def right_pass
+  #   @board.squares[@right.row - 1][@right.column]
+  # end
 
   def promote(class_name)
     return if class_name == Pawn || @square.row.zero? == false
