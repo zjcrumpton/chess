@@ -9,6 +9,7 @@ class Pawn < PieceFactory
 
   def find_moves
     @moves = []
+    @en_passants = []
     add_moves_for('up')
     add_moves_for('ul_diag')
     add_moves_for('ur_diag')
@@ -20,28 +21,21 @@ class Pawn < PieceFactory
 
     if @moves.empty? 
       @moves << @move if @move.piece.nil?
-      moves_for('double_up') if @move_count == 0
+      moves_for('double_up') if @square.row == 6
     elsif direction == 'double_up' && @move.piece.nil?
       @moves << @move
     elsif @move.piece.nil? == false
-      @moves << @move unless @move.piece.team == false
+      @moves << @move unless @move.piece.team == @team
+    else
+      return unless @square.row == 3
+      below = @board.squares[@move.row + 1][@move.column]
+      if below.piece.nil? == false && below.piece.team != @team && below.piece.class == Pawn
+        return if below.piece.move_count > 1
+        @moves << @move
+        @en_passants << @move 
+      end
     end
-  end  
-
-  # def en_passant
-  #   @en_passants = []
-  #   @en_passants << left_pass if !left.piece.nil? && left.piece.move_count == 1 && left_pass.piece.nil?
-  #   @en_passants << right_pass if !right.piece.nil? && right.piece.move_count == 1 && right_pass.piece.nil?
-  #   @en_passants.each { |move| @moves << move }
-  # end
-
-  # def left_pass
-  #   @board.squares[@left.row - 1][@left.column]
-  # end
-
-  # def right_pass
-  #   @board.squares[@right.row - 1][@right.column]
-  # end
+  end
 
   def promote(class_name)
     return if class_name == Pawn || @square.row.zero? == false
