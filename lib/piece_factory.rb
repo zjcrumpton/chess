@@ -23,7 +23,6 @@ class PieceFactory
   end
 
   def move_to(destination)
-    # @board.set_checks
     find_moves
     return unless @moves.include?(@board.square_at(destination))
 
