@@ -14,6 +14,7 @@ class King < PieceFactory
     add_moves_for('ur_diag')
     add_moves_for('dl_diag')
     add_moves_for('dr_diag')
+    remove_checks
   end
 
   def moves_for(direction)

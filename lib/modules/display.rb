@@ -48,6 +48,7 @@ module Display
   end
 
   def display_checks
+    refind_moves
     print_alpha('top')
     @squares.each do |row|
       print_row_num('left')

@@ -30,6 +30,7 @@ class PieceFactory
     new_piece = self.class.new(team, @board.square_at(destination))
     new_piece.move_count = move_count + 1
     @board.square_at(destination).piece = new_piece
+    @board.refind_moves
   end
 
   def remove_pieces(destination)
