@@ -48,12 +48,30 @@ module FlipMoves
     end
   end
 
-    def reset_checks
-    @board.squares.each do |row|
-      row.each do |square|
-        square.check = false
-      end
-    end
-  end
+    
+
+  # def set_checks
+  #   reset_checks
+  #   @board.squares.each do |row|
+  #     row.each do |square|
+  #       if square.piece.nil? || square.piece.team == @team
+  #         next
+  #       else
+  #         if square.piece.moves.nil?
+  #           next
+  #         else
+  #           square.piece.moves.each do |move|
+  #             if square.piece.class == Pawn
+  #               move.check == true unless move == square.piece.double
+  #               move.check == true unless move == square.piece.forward
+  #             else
+  #                 move.check = true
+  #             end
+  #           end
+  #         end
+  #       end
+  #     end
+  #   end
+  # end
 end
 

@@ -19,6 +19,23 @@ class Board
     @current_team = WhiteTeam
   end
 
+  def refind_moves
+    reset_checks
+    @squares.each do |row|
+      row.each do |square|
+        square.piece.find_moves unless square.piece.nil?
+      end
+    end
+  end
+
+  def reset_checks
+    @squares.each do |row|
+      row.each do |square|
+      square.check = false
+      end
+    end
+  end
+
   def set_locations
     @squares.each_with_index do |row, i|
       row.each_with_index do |square, j|
@@ -46,5 +63,6 @@ class Board
     else
       @current_team = WhiteTeam 
     end
+    refind_moves
   end
 end

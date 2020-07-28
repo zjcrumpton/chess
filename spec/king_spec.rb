@@ -23,9 +23,19 @@ describe King do
       game = Chess.new
       game.board.square_at('e5').piece = Bishop.new(game.teams[:black], game.board.square_at('e5'))
       game.board.square_at('e4').piece = King.new(game.teams[:white], game.board.square_at('e4'))
-      game.board.piece_at('e4').flip_moves!
-      game.board.piece_at('e4').move_to('f4')
-      expect(game.board.piece_at('f4').nil?).to eql(true)
+      # game.board.flip!
+      # game.board.piece_at('d5').flip_moves!
+      # game.board.flip!
+
+      game.board.piece_at('b7').move_to('b5')
+      game.board.piece_at('e4').show_moves
+      game.board.display_checks
+      game.board.piece_at('e4').move_to('e5')
+      game.board.display
+      # game.board.piece_at('e4').flip_moves!
+      # game.board.display_checks
+      # game.board.piece_at('e4').move_to('f4')
+      # expect(game.board.piece_at('f4').nil?).to eql(true)
     end
   end
 end

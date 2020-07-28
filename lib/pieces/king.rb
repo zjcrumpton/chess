@@ -5,7 +5,6 @@ require './lib/piece_factory.rb'
 # represents the king piece in chess
 class King < PieceFactory
   def find_moves
-    set_checks
     @moves = []
     add_moves_for('up')
     add_moves_for('left')
@@ -15,12 +14,12 @@ class King < PieceFactory
     add_moves_for('ur_diag')
     add_moves_for('dl_diag')
     add_moves_for('dr_diag')
-    remove_checks
   end
 
   def moves_for(direction)
     next_move_for(direction)
     return if @move.nil?
+    add_check
 
     if @move.piece.nil?
       @moves << @move
@@ -33,26 +32,10 @@ class King < PieceFactory
     @moves = @moves.filter { |move| move.check == false}
   end
 
-  def set_checks
-    reset_checks
+  def pawn_check
     @board.squares.each do |row|
       row.each do |square|
-        if square.piece.nil? || square.piece.team == @team
-          next
-        else
-          if square.piece.moves.nil?
-            next
-          else
-            square.piece.moves.each do |move|
-              if square.piece.class == Pawn
-                move.check == true unless move == square.piece.double
-                move.check == true unless move == square.piece.forward
-              else
-                  move.check = true
-              end
-            end
-          end
-        end
+
       end
     end
   end

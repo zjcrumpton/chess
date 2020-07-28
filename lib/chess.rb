@@ -10,9 +10,14 @@ class Chess
   attr_accessor :board, :teams, :display
   def initialize
     @board = Board.new
-    @teams = { white: WhiteTeam.new(@board) }
+    @teams = { white: WhiteTeam.new(@board, true) }
+    @teams[:white].current_team = false
     @board.flip!
-    @teams[:black] = BlackTeam.new(@board)
+    @teams[:black] = BlackTeam.new(@board, true)
+    @teams[:white].current_team = true
+    @teams[:black].current_team = false
+    @board.flip!
+
   end
 end
 

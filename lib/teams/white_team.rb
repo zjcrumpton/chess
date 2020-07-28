@@ -5,9 +5,9 @@ require 'colorize'
 
 # represents the white team's pieces and progress
 class WhiteTeam < Team
-  attr_reader :color, :board, :captured
+  attr_accessor :color, :board, :captured, :current_team
   # defines the unicode symbols for each white piece for display purposes
-  def initialize(board)
+  def initialize(board, current_team = false)
     @board = board
     @start_row = @board.squares[7]
     @pawn_row = @board.squares[6]
@@ -23,6 +23,7 @@ class WhiteTeam < Team
       King: " \u265A ".encode('utf-8')
     }
     @captured = []
+    @current_team = current_team
     place_pieces
   end
 end

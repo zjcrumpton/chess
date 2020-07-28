@@ -23,7 +23,7 @@ class PieceFactory
   end
 
   def move_to(destination)
-    find_moves
+    @board.refind_moves
     return unless @moves.include?(@board.square_at(destination))
 
     remove_pieces(@board.square_at(destination))
@@ -66,8 +66,9 @@ class PieceFactory
 
   def moves_for(direction)
     next_move_for(direction)
+
     return if @move.nil?
-    add_check
+    add_check unless @team.current_team == true
 
     if @move.piece.nil?
       @moves << @move
@@ -78,10 +79,8 @@ class PieceFactory
   end
 
   def add_check
-    # binding.pry
-    # return if @team.class == @board.current_team
-    # flip = @board.squares[switch(@move.location[0])][@move.location[1]]
-    # flip.check = true
+    return if @team.class == @board.current_team
+    @move.check = true
   end
 
 

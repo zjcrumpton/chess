@@ -8,7 +8,6 @@ module MoveVisuals
   @@row_num = 8
 
   def show_moves
-    find_moves
     print_alpha('top')
     @board.squares.each do |row|
       print_row_num('left')

@@ -43,4 +43,8 @@ class Team
   end
 
   def select_piece(square); end
+
+  def current_team?
+    @current_team == true
+  end
 end

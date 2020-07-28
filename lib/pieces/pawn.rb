@@ -12,9 +12,15 @@ class Pawn < PieceFactory
     @forward = nil
     @double = nil
     @en_passants = []
-    add_moves_for('up')
-    add_moves_for('ul_diag')
-    add_moves_for('ur_diag')
+    if @team.current_team?
+      add_moves_for('up')
+      add_moves_for('ul_diag')
+      add_moves_for('ur_diag')
+    else
+      add_moves_for('down')
+      add_moves_for('dl_diag')
+      add_moves_for('dr_diag')
+    end
   end
 
   def moves_for(direction)
@@ -23,16 +29,28 @@ class Pawn < PieceFactory
 
     if @moves.empty? 
       @moves << @move if @move.piece.nil?
-      @forward = @board.squares[switch(@move.location[0] - 1)][@move.location[1]]
-      moves_for('double_up') if @square.row == 6
+      if @team.current_team == true
+        if @square.row == 6
+          moves_for('double_up') if @move.piece.nil?
+        end
+      else
+        if @square.row == 1
+          moves_for('double_down') if @move.piece.nil?
+        end
+      end
     elsif direction == 'double_up' && @move.piece.nil?
-      @double = @board.squares[switch(@move.location[0] - 2)][@move.location[1]]
+      @moves << @move
+    elsif direction == 'double_down' && @move.piece.nil?
       @moves << @move
     elsif @move.piece.nil? == false
+      add_check
       @moves << @move unless @move.piece.team == @team
     else
+      add_check
       return unless @square.row == 3
-      below = @board.squares[@move.row + 1][@move.column]
+      below = @board.squares[@move.row + 1][@move.column] if @team.current_team == true
+      below = @board.squares[@move.row - 1][@move.column] if @team.current_team == false
+
       if below.piece.nil? == false && below.piece.team != @team && below.piece.class == Pawn
         return if below.piece.move_count > 1
         @moves << @move

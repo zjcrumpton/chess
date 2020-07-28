@@ -62,6 +62,11 @@ module MoveList
 
       @move = @board.squares[@square.row - 2][@square.column]
       @move = nil if @move.row > @square.row
+    elsif direction == 'double_down'
+      return @move = nil if @board.squares[@square.row + 2].nil?
+
+      @move = @board.squares[@square.row + 2][@square.column]
+      @move = nil if @move.row < @square.row
     end
   end
 end
@@ -136,3 +141,4 @@ module KnightMoves
   end
 end
 
+  
