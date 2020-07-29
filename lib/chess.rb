@@ -17,6 +17,18 @@ class Chess
     @teams[:white].current_team = true
     @teams[:black].current_team = false
     @board.flip!
+    start
+  end
 
+  def start
+    puts "
+    #{"ZJCRUMPTON PRESENTS:".green}#{"
+
+    ______    _    _   ______  __    _     ______  _    _   ______  ______   ______ 
+    | |  | \\ | |  | | | |  | \\ \\ \\  | |   | |     | |  | | | |     / |      / |     
+    | |__| | | |  | | | |--| <  \\_\\_| |   | |     | |--| | | |---- '------. '------.
+    |_|  \\_\\ \\_|__|_| |_|__|_/  ____|_|   |_|____ |_|  |_| |_|____  ____|_/  ____|_/
+                                                                                                                   
+    ".blue}"
   end
 end
