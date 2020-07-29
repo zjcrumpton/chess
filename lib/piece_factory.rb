@@ -41,11 +41,11 @@ class PieceFactory
   end
 
   def capture_en_passant(destination)
-    if @en_passants.include?(destination)
-      en_passant_piece = @board.squares[destination.row + 1][destination.column]
-      @team.captured << en_passant_piece.piece
-      en_passant_piece.piece = nil
-    end
+    return unless @en_passants.include?(destination)
+
+    en_passant_piece = @board.squares[destination.row + 1][destination.column]
+    @team.captured << en_passant_piece.piece
+    en_passant_piece.piece = nil
   end
 
   def show_captured
@@ -65,6 +65,7 @@ class PieceFactory
     next_move_for(direction)
 
     return if @move.nil?
+
     add_check unless @team.current_team == true
 
     if @move.piece.nil?
@@ -77,8 +78,7 @@ class PieceFactory
 
   def add_check
     return if @team.class == @board.current_team
+
     @move.check = true
   end
-
-
 end
