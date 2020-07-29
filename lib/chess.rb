@@ -40,6 +40,10 @@ class Chess
   end
 
   def menu_prompt
+    type("Enter 1 to start a new game.", 'fast')
+    type("Enter 2 to load your saved game.", 'fast')
+    type("Enter 3 to see the rules.", 'fast')
+    user_input = gets.chomp
   end
 end
 
