@@ -52,5 +52,19 @@ describe King do
       expect(game.board.piece_at('g1').class).to eql(King)
       expect(game.board.piece_at('f1').class).to eql(Rook)
     end
+
+    it "can castle with the left rook when on the black team" do
+      game = Chess.new
+      game.teams[:white].current_team = false
+      game.teams[:black].current_team = true
+      game.board.flip!
+      game.board.piece_at('b2').move_to('b4')
+      game.board.piece_at('c2').move_to('c4')
+      game.board.piece_at('c1').move_to('b2')
+      game.board.piece_at('b1').move_to('c3')
+      game.board.piece_at('d1').move_to('b1')
+      expect(game.board.piece_at('b1').class).to eql(King)
+      expect(game.board.piece_at('c1').class).to eql(Rook)
+    end
   end
 end

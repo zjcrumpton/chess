@@ -17,7 +17,9 @@ class King < PieceFactory
     add_moves_for('ur_diag')
     add_moves_for('dl_diag')
     add_moves_for('dr_diag')
-    @team.class == WhiteTeam ? add_white_castles : add_black_castles
+    unless @square.check?
+      @team.class == WhiteTeam ? add_white_castles : add_black_castles
+    end
     remove_checked_moves
   end
 
@@ -29,6 +31,8 @@ class King < PieceFactory
       castle_left
     elsif direction == 'white_castle_right'
       castle_right
+    elsif direction == 'black_castle_left'
+      castle_left_black
     else
       add_check
       if @move.piece.nil?
@@ -47,7 +51,10 @@ class King < PieceFactory
   end
 
   def add_black_castles
-
+    if @move_count == 0 && @team.current_team?
+      add_moves_for('black_castle_left')
+      # add_moves_for('white_castle_right')
+    end
   end
 
   def castle_left
@@ -64,6 +71,18 @@ class King < PieceFactory
     @castles << @move
     @rook_move = @board.square_at('f1')
   end
+
+  def castle_left_black
+    return if between_clear?('black_left') == false
+
+    @moves << @move
+    @castles << @move
+    @rook_move = @board.square_at('c1')
+  end
+
+  def castle_right_black
+
+  end
   
 
   def between_clear?(direction)
@@ -75,13 +94,14 @@ class King < PieceFactory
       goal = 5
       i = 7
     elsif direction == 'black_left'
-
+      goal = 2
+      i = 0
     elsif direction == 'black_right'
 
     end
 
     until i == goal
-      if direction == 'white_left'
+      if direction == 'white_left' || direction == 'black_left'
         i += 1
       else
         i -= 1
