@@ -95,6 +95,15 @@ module MoveList
       return @move = nil if @rook_square.piece.nil?
       return @move = nil unless @rook_square.piece.move_count == 0
       @right_rook = @rook_square.piece
+    elsif direction == 'black_castle_right'
+      return @move = nil if @board.squares[@square.row][@square.column + 2].nil?
+
+      @move = @board.squares[@square.row][@square.column + 2]
+      @rook_square = @board.squares[@square.row][7]
+
+      return @move = nil if @rook_square.piece.nil?
+      return @move = nil unless @rook_square.piece.move_count == 0
+      @right_rook = @rook_square.piece
     end
   end
 end

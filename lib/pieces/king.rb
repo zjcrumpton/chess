@@ -33,6 +33,8 @@ class King < PieceFactory
       castle_right
     elsif direction == 'black_castle_left'
       castle_left_black
+    elsif direction == 'black_castle_right'
+      castle_right_black
     else
       add_check
       if @move.piece.nil?
@@ -53,7 +55,7 @@ class King < PieceFactory
   def add_black_castles
     if @move_count == 0 && @team.current_team?
       add_moves_for('black_castle_left')
-      # add_moves_for('white_castle_right')
+      add_moves_for('black_castle_right')
     end
   end
 
@@ -81,9 +83,12 @@ class King < PieceFactory
   end
 
   def castle_right_black
+    return if between_clear?('black_right') == false
 
-  end
-  
+    @moves << @move
+    @castles << @move
+    @rook_move = @board.square_at('e1')
+  end  
 
   def between_clear?(direction)
     current = @rook_square
@@ -97,7 +102,8 @@ class King < PieceFactory
       goal = 2
       i = 0
     elsif direction == 'black_right'
-
+      goal = 4
+      i = 7
     end
 
     until i == goal
