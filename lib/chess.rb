@@ -2,11 +2,13 @@
 
 require 'require_all'
 require_relative 'board.rb'
+require './lib/modules/variable_typing.rb'
 require 'pry'
 require_all './lib/teams'
 
 # represents the game of Chess
 class Chess
+  include VariableTyping
   attr_accessor :board, :teams, :display
   def initialize
     @board = Board.new
@@ -21,14 +23,14 @@ class Chess
   end
 
   def start
-    puts "
-    #{"ZJCRUMPTON PRESENTS:".green}#{"
-    ______    _    _   ______  __    _ 
+    type("#{"ZJCRUMPTON PRESENTS:".green}", 'mid')
+    print "
+    #{"______    _    _   ______  __    _ 
     | |  | \\ | |  | | | |  | \\ \\ \\  | | 
     | |__| | | |  | | | |--| <  \\_\\_| |
     |_|  \\_\\ \\_|__|_| |_|__|_/  ____|_|".red}
     
-    #{"______  _    _   ______  ______   ______ 
+    #{"______   _    _   ______  ______   ______ 
     | |     | |  | | | |     / |      / |     
     | |     | |--| | | |---- '------. '------.
     |_|____ |_|  |_| |_|____  ____|_/  ____|_/".blue}
@@ -38,6 +40,7 @@ class Chess
   end
 
   def menu_prompt
-
   end
 end
+
+
