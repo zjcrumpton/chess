@@ -8,14 +8,12 @@ require './lib/modules/movement.rb'
 class PieceFactory
   include MoveList
   include MoveVisuals
-  attr_accessor :moves, :symbol, :team, :square, :move_count, :left, :right
+  attr_accessor :moves, :symbol, :team, :square, :move_count
   def initialize(team, square)
     @symbol = team.symbols[self.class.to_s.to_sym]
     @team = team
     @board = team.board
     @square = square
-    @left = @board.squares[@square.row][@square.column - 1]
-    @right = @board.squares[@square.row][@square.column + 1]
     @move_count = 0
     find_moves
   end
