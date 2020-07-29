@@ -137,4 +137,9 @@ class King < PieceFactory
       puts "#{move.location} Check?: #{move.check?}"
     end
   end
+
+  def check?
+    @board.refind_moves
+    @square.check? == true
+  end
 end
