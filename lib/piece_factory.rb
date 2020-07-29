@@ -26,6 +26,7 @@ class PieceFactory
     new_piece.move_count = move_count + 1
     @board.square_at(destination).piece = new_piece
     @board.refind_moves
+    @check = false if self.class == King
   end
 
   def remove_pieces(destination)
