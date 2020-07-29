@@ -9,7 +9,6 @@ require './lib/modules/movement.rb'
 class PieceFactory
   include MoveList
   include MoveVisuals
-  include FlipMoves
   attr_accessor :moves, :symbol, :team, :square, :move_count, :left, :right
   def initialize(team, square)
     @symbol = team.symbols[self.class.to_s.to_sym]

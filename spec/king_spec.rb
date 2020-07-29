@@ -24,6 +24,8 @@ describe King do
       game.board.piece_at('e4').move_to('e5')
       expect(game.board.piece_at('e5').class).to eql(King)
       game.board.piece_at('e5').show_moves
+      game.board.piece_at('b7').show_moves
+      game.board.piece_at('b2').show_moves
     end
 
     it "can't move into spaces under attack (check)" do
