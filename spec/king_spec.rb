@@ -37,14 +37,20 @@ describe King do
       game.board.piece_at('c2').move_to('c4')
       game.board.piece_at('d1').move_to('c2')
       game.board.piece_at('c1').move_to('b2')
-
-      game.board.display
-      game.board.piece_at('e1').show_moves
       game.board.piece_at('e1').move_to('c1')
       expect(game.board.piece_at('c1').class).to eql(King)
-      game.board.display
       expect(game.board.piece_at('d1').class).to eql(Rook)
-     
+    end
+
+    it "can castle with the right rook" do
+      game = Chess.new
+      game.board.piece_at('f2').move_to('f3')
+      game.board.piece_at('g2').move_to('g3')
+      game.board.piece_at('f1').move_to('g2')
+      game.board.piece_at('g1').move_to('h3')
+      game.board.piece_at('e1').move_to('g1')
+      expect(game.board.piece_at('g1').class).to eql(King)
+      expect(game.board.piece_at('f1').class).to eql(Rook)
     end
   end
 end

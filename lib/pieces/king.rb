@@ -17,16 +17,18 @@ class King < PieceFactory
     add_moves_for('ur_diag')
     add_moves_for('dl_diag')
     add_moves_for('dr_diag')
-    add_moves_for('castle_left') if @team.class == WhiteTeam && @move_count == 0 && @team.current_team?
-    remove_checks
+    @team.class == WhiteTeam ? add_white_castles : add_black_castles
+    remove_checked_moves
   end
 
   def moves_for(direction)
     next_move_for(direction)
     return if @move.nil?
 
-    if direction == 'castle_left'
+    if direction == 'white_castle_left'
       castle_left
+    elsif direction == 'white_castle_right'
+      castle_right
     else
       add_check
       if @move.piece.nil?
@@ -37,16 +39,53 @@ class King < PieceFactory
     end
   end
 
-  def castle_left
-    @moves << @move if between_clear?
-    @castles << @move
+  def add_white_castles
+    if @move_count == 0 && @team.current_team?
+      add_moves_for('white_castle_left')
+      add_moves_for('white_castle_right')
+    end
   end
 
-  def between_clear?
+  def add_black_castles
+
+  end
+
+  def castle_left
+    return if between_clear?('white_left') == false
+    @moves << @move
+    @castles << @move
+    @rook_move = @board.square_at('d1')
+  end
+
+  def castle_right
+    return if between_clear?('white_right') == false
+
+    @moves << @move
+    @castles << @move
+    @rook_move = @board.square_at('f1')
+  end
+  
+
+  def between_clear?(direction)
     current = @rook_square
-    i = 0
-    until i == 3
-      i += 1
+    if direction == 'white_left'
+      goal = 3
+      i = 0
+    elsif direction == 'white_right'
+      goal = 5
+      i = 7
+    elsif direction == 'black_left'
+
+    elsif direction == 'black_right'
+
+    end
+
+    until i == goal
+      if direction == 'white_left'
+        i += 1
+      else
+        i -= 1
+      end
       current = @board.squares[@square.row][i]
       if current.piece.nil? == false || current.check?
         return false
@@ -55,7 +94,7 @@ class King < PieceFactory
     return true
   end
 
-  def remove_checks
+  def remove_checked_moves
     @moves = @moves.filter { |move| move.check == false}
   end
 

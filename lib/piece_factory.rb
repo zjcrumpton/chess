@@ -33,8 +33,8 @@ class PieceFactory
     @square.piece = nil
     return unless self.class == King
     return unless @castles.include?(destination)
-
-    @board.square_at('d1').piece = Rook.new(@team, @board.square_at('d1'))
+    @rook_square.piece = nil
+    @rook_move.piece = Rook.new(@team, @rook_move)
   end
 
   def capture(destination)
