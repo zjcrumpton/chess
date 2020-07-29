@@ -142,4 +142,9 @@ class King < PieceFactory
     @board.refind_moves
     @square.check? == true
   end
+
+  def checkmate?
+    @board.refind_moves
+    @checkmate = true if check? && @moves.empty?
+  end
 end
