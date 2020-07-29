@@ -26,6 +26,7 @@ describe King do
       game = Chess.new
       game.board.square_at('e5').piece = Bishop.new(game.teams[:black], game.board.square_at('e5'))
       game.board.square_at('e4').piece = King.new(game.teams[:white], game.board.square_at('e4'))
+      game.board.piece_at('e4').move_to ('f4')
       expect(game.board.piece_at('f4').nil?).to eql(true)
     end
 
@@ -39,11 +40,11 @@ describe King do
 
       game.board.display
       game.board.piece_at('e1').show_moves
-
       game.board.piece_at('e1').move_to('c1')
       expect(game.board.piece_at('c1').class).to eql(King)
-      expect(game.board.piece_at('d1').class).to eql(King)
       game.board.display
+      expect(game.board.piece_at('d1').class).to eql(Rook)
+     
     end
   end
 end

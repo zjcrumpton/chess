@@ -67,6 +67,16 @@ module MoveList
 
       @move = @board.squares[@square.row + 2][@square.column]
       @move = nil if @move.row < @square.row
+    # King Castling Moves
+    elsif direction == 'castle_left'
+      return @move = nil if @board.squares[@square.row][@square.column - 2].nil?
+
+      @move = @board.squares[@square.row][@square.column - 2]
+      @rook_square = @board.squares[@square.row][0]
+
+      return @move = nil if @rook_square.piece.nil?
+      return @move = nil unless @rook_square.piece.move_count == 0
+      @left_rook = @rook_square.piece
     end
   end
 end

@@ -21,7 +21,6 @@ class PieceFactory
   def move_to(destination)
     @board.refind_moves
     return unless @moves.include?(@board.square_at(destination))
-
     remove_pieces(@board.square_at(destination))
     new_piece = self.class.new(team, @board.square_at(destination))
     new_piece.move_count = move_count + 1
@@ -32,6 +31,10 @@ class PieceFactory
   def remove_pieces(destination)
     capture(destination)
     @square.piece = nil
+    return unless self.class == King
+    return unless @castles.include?(destination)
+
+    @board.square_at('d1').piece = Rook.new(@team, @board.square_at('d1'))
   end
 
   def capture(destination)
