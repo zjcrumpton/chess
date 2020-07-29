@@ -2,7 +2,6 @@
 
 require 'colorize'
 require './lib/modules/visualizer.rb'
-require './lib/modules/flip_moves.rb'
 require './lib/modules/movement.rb'
 
 # factory function for creating pieces
