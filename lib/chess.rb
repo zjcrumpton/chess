@@ -91,12 +91,50 @@ class Chess
   end
 
   def take_turn
-    type("\n#{"It's".green} #{@current_team.name.white}#{'\'s turn:'.green}\n\n")
+    puts "\n\n\n\n"
+    type("\n\n#{"It's".green} #{@current_team.name.white}#{'\'s turn:'.green}\n\n\n")
     current_check?
     prompt_player
+    #TODO Make it so you can't allow another piece to put king in check by moving
   end
 
+  def current_check?
+    current_checkmate? if @board.current_king.check?
+  end
 
+  def current_checkmate?
+    if @board.current_king.checkmate?
+      game_over
+    else
+      save_king
+    end
+  end
+
+  def game_over
+    puts game_over
+  end
+
+  def save_king
+    @board.current_king.show_moves
+    type("YOUR KING IS IN CHECK\n".red)
+    puts "Enter coordinates (IE: a4) to select a location to move to.".green
+    type('Type your choice here, then press enter: '.yellow)
+    choice = gets.chomp
+
+    if valid?(choice)
+      unless @board.current_king.moves.include?(choice) || @board.current_king.moves.empty? == false
+        type("\n#{"INVALID INPUT \n".red}#{'ENTER A VALID MOVE LOCATION!'.yellow}\n")
+        return save_king
+      else
+        @board.current_king.move_to(choice)
+        puts "Succesful move!\n".green
+        puts "Your king is safe! For now...\n".green
+        @board.display
+        type("Flipping board....")
+        switch_team
+      end
+    end
+  end
 
   def prompt_player
     @board.display
@@ -105,7 +143,6 @@ class Chess
     puts "Enter 1 to see the other options menu.".green
     type('Type your choice here, then press enter: '.yellow)
     choice = gets.chomp
-
     case choice
     when '1'
       puts 'menu'
@@ -113,7 +150,8 @@ class Chess
     else
       if valid?(choice)
         if @board.piece_at(choice).nil? || @board.piece_at(choice).team != @current_team
-        type("\n#{"INVALID INPUT \n".red}#{'ENTER A VALID PIECE LOCATION!'.yellow}\n")
+          type("\n#{"INVALID INPUT \n".red}#{'ENTER A VALID PIECE LOCATION!'.yellow}\n")
+          prompt_player
         else
           type("Valid Moves:\n".green)
           @board.piece_at(choice).show_moves
@@ -138,24 +176,31 @@ class Chess
       prompt_player
     else
       if valid?(choice)
-        unless piece.moves.include?(choice) || piece.moves.empty? == false
-          type("\n#{"INVALID INPUT \n".red}#{'ENTER A VALID PIECE LOCATION!'.yellow}\n")
-          return move_or_change(piece)
-        else
-          piece.move_to(choice)
-          puts "Succesful move!\n".green
-          @board.display
-          type("Flipping board....")
-          switch_team
-          take_turn
-        end
-      else
+        valid_move?(choice, piece)
+      else 
+        type("\n#{"INVALID INPUT \n".red}#{'ENTER A VALID RESPONSE NEXT TIME!'.yellow}\n")
+        move_or_change(piece)
       end
     end
   end
 
   def valid?(choice)
     true if choice[0].match(/^[[:alpha:]]$/) && choice[1].match(/[0-9]/) && choice.length == 2
+  end
+
+  def valid_move?(choice, piece)
+    if piece.moves.include?(@board.square_at(choice)) == false || piece.moves.empty?
+      type("\n#{"INVALID INPUT \n".red}#{'ENTER A VALID MOVE LOCATION!'.yellow}\n")
+      return move_or_change(piece)
+    else 
+      puts 'yaw yeet'
+      piece.move_to(choice)
+      puts "Succesful move!\n".green
+      @board.display
+      type("Flipping board....")
+      switch_team
+      take_turn
+    end
   end
 
   def show_captured

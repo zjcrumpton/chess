@@ -66,6 +66,7 @@ module Find
         return square.piece
       end
     end
-
+#TODO - Add check and checkmate to main gameplay logic
+#TODO - Add menu functionality to take_turn prompt_playerish area
   end
 end
