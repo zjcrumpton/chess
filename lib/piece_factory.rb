@@ -66,7 +66,7 @@ class PieceFactory
 
     if @move.piece.nil?
       @moves << @move
-      moves_for(direction) unless @move.edge?
+      moves_for(direction)
     else
       @moves << @move unless @move.piece.team == @team
     end

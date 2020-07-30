@@ -57,4 +57,15 @@ module Find
   def remove_at(square)
     square_at(square).piece = nil
   end
+
+  def current_king
+    @squares.each do |row|
+      row.each do |square|
+        next if square.piece.class != King || square.piece.team.current_team? == false
+
+        return square.piece
+      end
+    end
+
+  end
 end

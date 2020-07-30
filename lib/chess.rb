@@ -32,6 +32,7 @@ class Chess
       @teams[:black].current_team = false
       @current_team = @teams[:white]
     end
+    @board.flip!
   end
 
   def start
@@ -53,9 +54,7 @@ class Chess
 
   def menu_prompt
     type("Enter 1 to start a new game.\n".green)
-    type("Enter 2 to load your saved game.\n".green)
-    type("Enter 3 to see the rules.\n\n".green)
-
+    type("Enter 2 to load your saved game.\n\n".green)
     type('Type your choice here, then press enter: '.yellow)
     user_choice(gets.chomp.to_i)
   end
@@ -93,14 +92,17 @@ class Chess
 
   def take_turn
     type("\n#{"It's".green} #{@current_team.name.white}#{'\'s turn:'.green}\n\n")
+    current_check?
     prompt_player
   end
+
+
 
   def prompt_player
     @board.display
     show_captured
     puts "Enter coordinates (IE: a2) to select a piece.".green
-    puts "Enter 1 to open the options menu.".green
+    puts "Enter 1 to see the other options menu.".green
     type('Type your choice here, then press enter: '.yellow)
     choice = gets.chomp
 
@@ -109,14 +111,51 @@ class Chess
       puts 'menu'
       prompt_player
     else
-      if choice[0].match(/^[[:alpha:]]$/) && choice[1].match(/[0-9]/)
-      puts 'yeet'
-      # @board.piece_at(choice).show_moves
+      if valid?(choice)
+        if @board.piece_at(choice).nil? || @board.piece_at(choice).team != @current_team
+        type("\n#{"INVALID INPUT \n".red}#{'ENTER A VALID PIECE LOCATION!'.yellow}\n")
+        else
+          type("Valid Moves:\n".green)
+          @board.piece_at(choice).show_moves
+          move_or_change(@board.piece_at(choice))
+        end
       else
       type("\n#{"INVALID INPUT \n".red}#{'ENTER A VALID RESPONSE NEXT TIME!'.yellow}\n")
       prompt_player
       end
     end
+  end
+
+  def move_or_change(piece)
+    puts "Enter coordinates (IE: a4) to select a location to move to.".green
+    puts "Enter 1 to choose a different piece.".green
+    type('Type your choice here, then press enter: '.yellow)
+
+    choice = gets.chomp
+
+    case choice
+    when '1'
+      prompt_player
+    else
+      if valid?(choice)
+        unless piece.moves.include?(choice) || piece.moves.empty? == false
+          type("\n#{"INVALID INPUT \n".red}#{'ENTER A VALID PIECE LOCATION!'.yellow}\n")
+          return move_or_change(piece)
+        else
+          piece.move_to(choice)
+          puts "Succesful move!\n".green
+          @board.display
+          type("Flipping board....")
+          switch_team
+          take_turn
+        end
+      else
+      end
+    end
+  end
+
+  def valid?(choice)
+    true if choice[0].match(/^[[:alpha:]]$/) && choice[1].match(/[0-9]/) && choice.length == 2
   end
 
   def show_captured

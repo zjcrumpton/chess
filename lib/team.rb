@@ -52,7 +52,8 @@ class Team
     print 'Captured: '
     @captured.each do |piece|
       piece.symbol = piece.symbol.colorize(background: :black)
-      puts piece.symbol
+      print piece.symbol
     end
+    print "\n"
   end
 end
