@@ -52,14 +52,6 @@ class PieceFactory
     en_passant_piece.piece = nil
   end
 
-  def show_captured
-    print 'Captured: '
-    @team.captured.each do |piece|
-      piece.symbol = piece.symbol.colorize(background: :black)
-      puts piece.symbol
-    end
-  end
-
   def add_moves_for(direction)
     @i = 0
     moves_for(direction)

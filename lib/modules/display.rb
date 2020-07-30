@@ -17,6 +17,7 @@ module Display
       print_row_num('right')
     end
     print_alpha('bottom')
+    print "\n"
     @@row_num = 8 # resets row_num for the next time display is called
   end
 

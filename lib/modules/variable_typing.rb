@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module VariableTyping
-  def type(string, speed = 'slow')
+  def type(string, speed = 'fast')
     speed = if speed == 'fast'
               0.03
             elsif speed == 'mid'

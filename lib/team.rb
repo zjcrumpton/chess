@@ -47,4 +47,12 @@ class Team
   def current_team?
     @current_team == true
   end
+
+  def show_captured
+    print 'Captured: '
+    @captured.each do |piece|
+      piece.symbol = piece.symbol.colorize(background: :black)
+      puts piece.symbol
+    end
+  end
 end
