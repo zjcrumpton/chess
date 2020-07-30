@@ -13,6 +13,5 @@ module VariableTyping
           sleep speed
           print c
       end
-      puts ""
   end
 end
