@@ -61,8 +61,7 @@ class Chess
   end
 
   def invalid_input
-    type("INVALID INPUT\n".red, 'fast')
-    type('Type your choice here, then press enter: '.yellow, 'fast')
+    type("\n#{"INVALID INPUT \n".red}#{'ENTER A VALID RESPONSE:'.yellow} ", 'fast')
     user_choice(gets.chomp.to_i)
   end
 end
