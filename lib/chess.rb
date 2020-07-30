@@ -50,7 +50,7 @@ class Chess
   def user_choice(choice)
     case choice
     when 1
-      puts 'new game'
+      new_game
     when 2
       puts 'load game'
     when 3
@@ -63,5 +63,22 @@ class Chess
   def invalid_input
     type("\n#{"INVALID INPUT \n".red}#{'ENTER A VALID RESPONSE:'.yellow} ", 'fast')
     user_choice(gets.chomp.to_i)
+  end
+
+  def new_game
+    type("You chose: NEW GAME\n\n".green, 'fast')
+    init_players
+    take_turn
+  end
+
+  def init_players
+    type("#{'Player for:'.green} #{'white team'.white} #{'- enter your name: '.yellow}", 'fast')
+    @teams[:white].name = gets.chomp
+    type("#{'Player for:'.green} #{'black team'.white} #{'- enter your name: '.yellow}", 'fast')
+    @teams[:black].name = gets.chomp
+  end
+
+  def take_turn
+    @board.display
   end
 end
