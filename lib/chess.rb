@@ -22,18 +22,18 @@ class Chess
   end
 
   def start
-    type("#{"ZJCRUMPTON PRESENTS:".green}", 'mid')
+    type('ZJCRUMPTON PRESENTS:'.green.to_s, 'mid')
     print "
-    #{"______    _    _   ______  __    _ 
-    | |  | \\ | |  | | | |  | \\ \\ \\  | | 
+    #{"______    _    _   ______  __    _
+    | |  | \\ | |  | | | |  | \\ \\ \\  | |
     | |__| | | |  | | | |--| <  \\_\\_| |
     |_|  \\_\\ \\_|__|_| |_|__|_/  ____|_|".red}
-    
-    #{"______   _    _   ______  ______   ______ 
-    | |     | |  | | | |     / |      / |     
+
+    #{"______   _    _   ______  ______   ______
+    | |     | |  | | | |     / |      / |
     | |     | |--| | | |---- '------. '------.
     |_|____ |_|  |_| |_|____  ____|_/  ____|_/".blue}
-                                                                                    
+
     \n\n"
     menu_prompt
   end
@@ -41,11 +41,28 @@ class Chess
   def menu_prompt
     type("Enter 1 to start a new game.\n".green, 'fast')
     type("Enter 2 to load your saved game.\n".green, 'fast')
-    type("Enter 3 to see the rules.\n\n", 'fast')
+    type("Enter 3 to see the rules.\n\n".green, 'fast')
 
-    type("Type your choice here, then press enter: ", 'fast')
-    user_input = gets.chomp
+    type('Type your choice here, then press enter: '.yellow, 'fast')
+    user_choice(gets.chomp.to_i)
+  end
+
+  def user_choice(choice)
+    case choice
+    when 1
+      puts 'new game'
+    when 2
+      puts 'load game'
+    when 3
+      puts 'rules'
+    else
+      invalid_input
+    end
+  end
+
+  def invalid_input
+    type("INVALID INPUT\n".red, 'fast')
+    type('Type your choice here, then press enter: '.yellow, 'fast')
+    user_choice(gets.chomp.to_i)
   end
 end
-
-
