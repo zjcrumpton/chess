@@ -32,9 +32,9 @@ module Display
   def print_row_num(position)
     if position == 'left'
       print "#{@@row_num} "
-      @@row_num -= 1
     else
       print " #{@@row_num}\n"
+      @@row_num -= 1
     end
   end
 
