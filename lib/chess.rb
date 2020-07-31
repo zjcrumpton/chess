@@ -3,12 +3,14 @@
 require 'require_all'
 require_relative 'board.rb'
 require './lib/modules/variable_typing.rb'
+require './lib/modules/game_logic.rb'
 require 'pry'
 require_all './lib/teams'
 
 # represents the game of Chess
 class Chess
   include VariableTyping
+  include Game
   attr_accessor :board, :teams, :display
   def initialize
     @board = Board.new
@@ -35,7 +37,7 @@ class Chess
     @board.flip!
   end
 
-  def start
+  def start #clean
     type("\nZJCRUMPTON PRESENTS:".green.to_s, 'mid')
     print "
     #{"______    _    _   ______  __    _
@@ -123,8 +125,7 @@ class Chess
   #FIX THIS SO OTHER PIECES CAN SAVE THE KING
   def save_king
     current_checkmate?
-    @board.current_king.show_moves
-    type("#{"YOUR KING IS IN CHECK,"red} #{@current_team.name.white}\n")
+    type("#{"YOUR KING IS IN CHECK,".red} #{@current_team.name.white}\n")
     prompt_player
   end
 

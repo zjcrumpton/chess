@@ -21,12 +21,28 @@ class PieceFactory
   def move_to(destination)
     @board.refind_moves
     return unless @moves.include?(@board.square_at(destination))
-    remove_pieces(@board.square_at(destination))
-    new_piece = self.class.new(team, @board.square_at(destination))
-    new_piece.move_count = move_count + 1
-    @board.square_at(destination).piece = new_piece
+    if protected_king?(destination)
+      @board.square_at(destination).piece = nil
+      remove_pieces(@board.square_at(destination))
+      new_piece = self.class.new(team, @board.square_at(destination))
+      new_piece.move_count = move_count + 1
+      @board.square_at(destination).piece = new_piece
+      @board.refind_moves
+      @check = false if self.class == King
+    else
+      puts("INVALID MOVE! PROTECT YOUR KING".red)
+    end
+  end
+
+  def protected_king?(destination)
     @board.refind_moves
-    @check = false if self.class == King
+     if @board.current_king.check?
+      new_piece = self.class.new(team, @board.square_at(destination))
+      new_piece.move_count = move_count + 1
+      @board.square_at(destination).piece = new_piece
+      @board.refind_moves
+     end
+     return true unless @board.current_king.check?
   end
 
   def remove_pieces(destination)

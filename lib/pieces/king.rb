@@ -139,6 +139,10 @@ class King < PieceFactory
   end
 
   def check?
+    @square.check? == true
+  end
+
+  def hard_check?
     @board.refind_moves
     @square.check? == true
   end
