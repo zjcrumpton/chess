@@ -32,7 +32,6 @@ class Chess
 
   def start_prompt
     print_options('start_menu')
-    entry_prompt
     start_choice(ask_for_number)
   end
 
@@ -56,39 +55,31 @@ class Chess
   end
 
   def prompt_player
-    @board.display
+    show_board
     show_captured
-    puts "Enter coordinates (IE: a2) to select a piece.".green
-    puts "Enter 1 to see the other options menu.".green
-    type('Type your choice here, then press enter: '.yellow)
+    print_options('player_prompt')
     choice = gets.chomp
-    case choice
-    when '1'
-      puts 'menu'
+    if valid?(choice) == false
+      invalid_input('input')
       prompt_player
     else
-      if valid?(choice)
-        if @board.piece_at(choice).nil? || @board.piece_at(choice).team != @current_team
-          invalid_input('piece')
-          prompt_player
-        else
-          type("Valid Moves:\n".green)
-          @board.piece_at(choice).show_moves
-          @from = choice
-          move_or_change(@board.piece_at(choice))
-        end
-      else
-        invalid_input('input')
-        prompt_player
-      end
+      choice == '1' ? puts('menu') : select_piece(choice)
     end
   end
 
-  def move_or_change(piece)
-    puts "Enter coordinates (IE: a4) to select a location.".green
-    puts "Enter 1 to choose a different piece.".green
-    type('Type your choice here, then press enter: '.yellow)
+  def select_piece(choice)
+    if valid_piece_at?(choice)
+      show_moves(choice)
+      @from = choice
+      move(@board.piece_at(choice))
+    else
+      invalid_input('piece')
+      prompt_player
+    end
+  end
 
+  def move(piece)
+    print_options('move')
     choice = gets.chomp
 
     case choice
@@ -99,22 +90,18 @@ class Chess
         valid_move?(choice, piece)
       else 
         invalid_input('input')
-        move_or_change(piece)
+        move(piece)
       end
     end
-  end
-
-  def valid?(choice)
-    true if choice[0].match(/^[[:alpha:]]$/) && choice[1].match(/[0-9]/) && choice.length == 2
   end
 
   def valid_move?(choice, piece)
     if piece.moves.include?(@board.square_at(choice)) == false || piece.moves.empty?
       invalid_input('move')
-      return move_or_change(piece)
+      return move(piece)
     else 
       piece.move_to(choice)
-      @board.display
+      show_board
       switch_team
       if @board.current_king.checkmate?
         current_checkmate?
@@ -126,9 +113,5 @@ class Chess
     end
   end
 
-  def show_captured
-    return if @current_team.captured.empty?
-
-    @current_team.show_captured
-  end
+ 
 end

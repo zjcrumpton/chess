@@ -14,6 +14,10 @@ module Game
     flip_board
   end
 
+  def show_board
+    @board.display
+  end
+
   # Flips the board
   def flip_board
     @board.flip!
@@ -45,7 +49,7 @@ module Game
 
   # prints the whole title card
   def print_title
-    type("\nZJCRUMPTON PRESENTS:".green.to_s, 'mid')
+    type("ZJCRUMPTON PRESENTS:".green.to_s, 'mid')
     print "
     #{"______    _    _   ______  __    _
     | |  | \\ | |  | | | |  | \\ \\ \\  | |
@@ -65,7 +69,16 @@ module Game
     case type
     when 'start_menu'
       type("Enter 1 to start a new game.\n".green)
-      type("Enter 2 to load your saved game.\n\n".green)
+      type("Enter 2 to load your saved game.\n\n\n".green)
+      entry_prompt
+    when 'player_prompt'
+      puts "Enter coordinates (IE: a2) to select a piece.".green
+      puts "Enter 1 to see the other options menu.".green
+      entry_prompt
+    when 'move'
+      puts "Enter coordinates (IE: a4) to select a location.".green
+      puts "Enter 1 to choose a different piece.".green
+      entry_prompt
     end
   end
 
@@ -111,6 +124,12 @@ module Game
       game_over
     end
   end
+
+  def show_captured
+    return if @current_team.captured.empty?
+
+    @current_team.show_captured
+  end
 end
 
 module Messages
@@ -136,6 +155,11 @@ module Messages
   def entry_prompt
     type('Type your choice here, then press enter: '.yellow)
   end
+
+  def show_moves(choice)
+    type("Valid Moves:\n".green)
+    @board.piece_at(choice).show_moves
+  end
 end
 
 # methods for veryifing user is correctly responding
@@ -149,5 +173,18 @@ module VerifyInput
     when 'move'
       type("\n#{"INVALID INPUT - ENTER A VALID MOVE LOCATION!".red}\n")
     end
+  end
+
+  def valid?(choice)
+    if choice.length == 1
+      return true if choice == '1'
+    elsif choice.length == 2
+      return true if choice[0].match(/[a-h]/) && choice[1].match(/[0-8]/)
+    end
+    false
+  end
+
+  def valid_piece_at?(choice)
+    true if @board.piece_at(choice).nil? == false || @board.piece_at(choice).team == @current_team
   end
 end

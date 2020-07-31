@@ -25,7 +25,7 @@ module Display
     if position == 'top'
       print "                a  b  c  d  e  f  g  h \n"
     else
-      print "                a  b  c  d  e  f  g  h \n"
+      print "                a  b  c  d  e  f  g  h \n\n"
     end
   end
 
