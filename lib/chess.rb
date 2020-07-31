@@ -12,16 +12,12 @@ class Chess
   include VariableTyping
   include Game
   include VerifyInput
+  include Messages
   attr_accessor :board, :teams, :display
+
   def initialize
     @board = Board.new
-    @teams = { white: WhiteTeam.new(@board, true) }
-    @current_team = @teams[:white]
-    @teams[:white].current_team = false
-    flip_board
-    @teams[:black] = BlackTeam.new(@board)
-    white_turn
-    flip_board
+    set_board
   end
 
   def switch_team
@@ -40,47 +36,16 @@ class Chess
     start_choice(ask_for_number)
   end
 
-  
-
   def new_game
-    type("You chose: NEW GAME\n\n".green)
-    init_players
+    name_white_player
+    name_black_player
     take_turn
   end
 
-  def init_players
-    name_white_player
-    name_black_player
-  end
-
   def take_turn
-    type("#{@teams[:white].symbols[:King]}\n#{@teams[:black].symbols[:King]}\n#{@teams[:white].symbols[:King]}\n#{@teams[:black].symbols[:King]}\n\n")
-    type("#{"It's".green} #{@current_team.name.white}#{'\'s turn:'.green}\n\n\n")
-    if current_check?
-      save_king
-    else
-      prompt_player
-    end
-    #TODO Make it so you can't allow another piece to put king in check by moving/ create function that never allows a move that puts the king in check
-  end
-
-  def current_check?
-    true if @board.current_king.check?
-  end
-
-  def current_checkmate?
-    if @board.current_king.checkmate?
-      game_over
-    end
-  end
-
-  def game_over
-    switch_team
-    puts "GAME OVER".red
-    type("#{@current_team.name} is the winner.".green)
-    switch_team
-    type("\nSay goodbye to your kingdom #{@current_team.name}...\n".red)
-
+    loading_animation
+    your_turn
+    current_check? ? save_king : prompt_player
   end
 
   #FIX THIS SO OTHER PIECES CAN SAVE THE KING
@@ -109,6 +74,7 @@ class Chess
         else
           type("Valid Moves:\n".green)
           @board.piece_at(choice).show_moves
+          @from = choice
           move_or_change(@board.piece_at(choice))
         end
       else
@@ -153,7 +119,8 @@ class Chess
       if @board.current_king.checkmate?
         current_checkmate?
       else
-        type("Successful move! Flipping board....\n".green)
+        @to = choice
+        type("Successful move! (#{piece.class}: #{@from} => #{@to}) Flipping board....\n".green)
         take_turn
       end
     end

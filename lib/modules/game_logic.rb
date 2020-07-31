@@ -2,6 +2,18 @@
 
 # Provides syntax sugar for main game logic
 module Game
+
+  # Places pieces on the board
+  def set_board
+    @teams = { white: WhiteTeam.new(@board, true) }
+    @current_team = @teams[:white]
+    @teams[:white].current_team = false
+    flip_board
+    @teams[:black] = BlackTeam.new(@board)
+    white_turn
+    flip_board
+  end
+
   # Flips the board
   def flip_board
     @board.flip!
@@ -57,17 +69,14 @@ module Game
     end
   end
 
-  # standard prompt displayed before user is allowed to interact with the program
-  def entry_prompt
-    type('Type your choice here, then press enter: '.yellow)
-  end
-
   # takes user on the correct path from the start menu, either creating a new game or loading the save
   def start_choice(choice)
     case choice
     when 1
+      type("You chose: NEW GAME\n\n".green)
       new_game
     when 2
+      type("You chose: LOAD GAME\n\n".green)
       puts 'load game'
     else
       invalid_input('input')
@@ -93,9 +102,39 @@ module Game
     gets.chomp.to_i
   end
 
+  def current_check?
+    true if @board.current_king.check?
+  end
+
+  def current_checkmate?
+    if @board.current_king.checkmate?
+      game_over
+    end
+  end
+end
+
+module Messages
+  def game_over
+    switch_team
+    puts "GAME OVER".red
+    type("#{@current_team.name} is the winner.".green)
+    switch_team
+    type("\nSay goodbye to your kingdom #{@current_team.name}...\n".red)
+  end
+
   # prints crowns for a loading animation
   def loading_animation
+    type("#{@teams[:white].symbols[:King]}\n#{@teams[:black].symbols[:King]}\n#{@teams[:white].symbols[:King]}\n#{@teams[:black].symbols[:King]}\n\n")
+  end
 
+  # tells the user who's turn it is
+  def your_turn
+    type("#{"It's".green} #{@current_team.name.white}#{'\'s turn:'.green}\n\n\n")
+  end
+
+  # standard prompt displayed before user is allowed to interact with the program
+  def entry_prompt
+    type('Type your choice here, then press enter: '.yellow)
   end
 end
 
