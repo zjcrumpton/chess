@@ -19,34 +19,17 @@ class Chess
     @teams[:white].current_team = false
     flip_board
     @teams[:black] = BlackTeam.new(@board)
-    @teams[:white].current_team = true
-    @teams[:black].current_team = false
+    white_turn
     flip_board
   end
 
   def switch_team
-    if white_turn?
-      black_turn
-    else
-      white_turn
-    end
+    white_turn? ? black_turn : white_turn
     flip_board
   end
 
-  def start #clean
-    type("\nZJCRUMPTON PRESENTS:".green.to_s, 'mid')
-    print "
-    #{"______    _    _   ______  __    _
-    | |  | \\ | |  | | | |  | \\ \\ \\  | |
-    | |__| | | |  | | | |--| <  \\_\\_| |
-    |_|  \\_\\ \\_|__|_| |_|__|_/  ____|_|".red}
-
-    #{"______   _    _   ______  ______   ______
-    | |     | |  | | | |     / |      / |
-    | |     | |--| | | |---- '------. '------.
-    |_|____ |_|  |_| |_|____  ____|_/  ____|_/".blue}
-
-    \n\n"
+  def start
+    print_title
     menu_prompt
   end
 

@@ -24,4 +24,20 @@ module Game
   def black_turn?
     true if @current_team == @teams[:black]
   end
+
+  def print_title
+    type("\nZJCRUMPTON PRESENTS:".green.to_s, 'mid')
+    print "
+    #{"______    _    _   ______  __    _
+    | |  | \\ | |  | | | |  | \\ \\ \\  | |
+    | |__| | | |  | | | |--| <  \\_\\_| |
+    |_|  \\_\\ \\_|__|_| |_|__|_/  ____|_|".red}
+
+    #{"______   _    _   ______  ______   ______
+    | |     | |  | | | |     / |      / |
+    | |     | |--| | | |---- '------. '------.
+    |_|____ |_|  |_| |_|____  ____|_/  ____|_/".blue}
+
+    \n\n"
+  end
 end
