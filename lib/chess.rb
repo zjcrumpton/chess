@@ -11,6 +11,7 @@ require_all './lib/teams'
 class Chess
   include VariableTyping
   include Game
+  include VerifyInput
   attr_accessor :board, :teams, :display
   def initialize
     @board = Board.new
@@ -36,13 +37,10 @@ class Chess
   def start_prompt
     print_options('start_menu')
     entry_prompt
-    start_choice(gets.chomp.to_i)
+    start_choice(ask_for_number)
   end
 
-  def invalid_input
-    type("\n#{"INVALID INPUT \n".red}#{'ENTER A VALID RESPONSE: '.yellow}")
-    user_choice(gets.chomp.to_i)
-  end
+  
 
   def new_game
     type("You chose: NEW GAME\n\n".green)
@@ -56,8 +54,8 @@ class Chess
   end
 
   def take_turn
-    puts "\n\n\n\n"
-    type("\n\n#{"It's".green} #{@current_team.name.white}#{'\'s turn:'.green}\n\n\n")
+    type("#{@teams[:white].symbols[:King]}\n#{@teams[:black].symbols[:King]}\n#{@teams[:white].symbols[:King]}\n#{@teams[:black].symbols[:King]}\n\n")
+    type("#{"It's".green} #{@current_team.name.white}#{'\'s turn:'.green}\n\n\n")
     if current_check?
       save_king
     else
@@ -106,7 +104,7 @@ class Chess
     else
       if valid?(choice)
         if @board.piece_at(choice).nil? || @board.piece_at(choice).team != @current_team
-          type("\n#{"INVALID INPUT \n".red}#{'ENTER A VALID PIECE LOCATION!'.yellow}\n")
+          invalid_input('piece')
           prompt_player
         else
           type("Valid Moves:\n".green)
@@ -114,14 +112,14 @@ class Chess
           move_or_change(@board.piece_at(choice))
         end
       else
-      type("\n#{"INVALID INPUT \n".red}#{'ENTER A VALID RESPONSE NEXT TIME!'.yellow}\n")
-      prompt_player
+        invalid_input('input')
+        prompt_player
       end
     end
   end
 
   def move_or_change(piece)
-    puts "Enter coordinates (IE: a4) to select a location to move to.".green
+    puts "Enter coordinates (IE: a4) to select a location.".green
     puts "Enter 1 to choose a different piece.".green
     type('Type your choice here, then press enter: '.yellow)
 
@@ -134,7 +132,7 @@ class Chess
       if valid?(choice)
         valid_move?(choice, piece)
       else 
-        type("\n#{"INVALID INPUT \n".red}#{'ENTER A VALID RESPONSE NEXT TIME!'.yellow}\n")
+        invalid_input('input')
         move_or_change(piece)
       end
     end
@@ -146,17 +144,16 @@ class Chess
 
   def valid_move?(choice, piece)
     if piece.moves.include?(@board.square_at(choice)) == false || piece.moves.empty?
-      type("\n#{"INVALID INPUT \n".red}#{'ENTER A VALID MOVE LOCATION!'.red}\n")
+      invalid_input('move')
       return move_or_change(piece)
     else 
       piece.move_to(choice)
-      puts "Succesful move!\n".green
       @board.display
       switch_team
       if @board.current_king.checkmate?
         current_checkmate?
       else
-        type("Flipping board....")
+        type("Successful move! Flipping board....\n".green)
         take_turn
       end
     end

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Provides syntax sugar for main game logic
 module Game
   # Flips the board
   def flip_board
@@ -69,17 +70,45 @@ module Game
     when 2
       puts 'load game'
     else
-      invalid_input
+      invalid_input('input')
+      entry_prompt
+      start_choice(ask_for_number)
     end
   end
 
+  # asks player to provide a name for the white team's player
   def name_white_player
     type("#{'Player for:'.green} #{'white team'.white} #{'- enter your name: '.yellow}")
     @teams[:white].name = gets.chomp
   end
 
+  # asks player to provide a name for the black team's player
   def name_black_player
     type("#{'Player for:'.green} #{'black team'.white} #{'- enter your name: '.yellow}")
     @teams[:black].name = gets.chomp
+  end
+
+  # prompts user for input then converts it to a number
+  def ask_for_number
+    gets.chomp.to_i
+  end
+
+  # prints crowns for a loading animation
+  def loading_animation
+
+  end
+end
+
+# methods for veryifing user is correctly responding
+module VerifyInput
+  def invalid_input(type)
+    case type
+    when 'input'
+      type("\n#{"INVALID INPUT - ENTER A VALID RESPONSE NEXT TIME!".red}\n")
+    when 'piece'
+      type("\n#{"INVALID INPUT - ENTER A VALID PIECE LOCATION!".red}\n")
+    when 'move'
+      type("\n#{"INVALID INPUT - ENTER A VALID MOVE LOCATION!".red}\n")
+    end
   end
 end
