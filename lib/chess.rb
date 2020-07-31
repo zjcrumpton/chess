@@ -30,26 +30,13 @@ class Chess
 
   def start
     print_title
-    menu_prompt
+    start_prompt
   end
 
   def start_prompt
     print_options('start_menu')
     entry_prompt
-    user_choice(gets.chomp.to_i)
-  end
-
-  def user_choice(choice)
-    case choice
-    when 1
-      new_game
-    when 2
-      puts 'load game'
-    when 3
-      puts 'rules'
-    else
-      invalid_input
-    end
+    start_choice(gets.chomp.to_i)
   end
 
   def invalid_input
@@ -64,10 +51,8 @@ class Chess
   end
 
   def init_players
-    type("#{'Player for:'.green} #{'white team'.white} #{'- enter your name: '.yellow}")
-    @teams[:white].name = gets.chomp
-    type("#{'Player for:'.green} #{'black team'.white} #{'- enter your name: '.yellow}")
-    @teams[:black].name = gets.chomp
+    name_white_player
+    name_black_player
   end
 
   def take_turn
