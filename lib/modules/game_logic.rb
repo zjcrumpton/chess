@@ -40,4 +40,16 @@ module Game
 
     \n\n"
   end
+
+  def print_options(type)
+    case type
+    when 'start_menu'
+      type("Enter 1 to start a new game.\n".green)
+      type("Enter 2 to load your saved game.\n\n".green)
+    end
+  end
+
+  def entry_prompt
+    type('Type your choice here, then press enter: '.yellow)
+  end
 end

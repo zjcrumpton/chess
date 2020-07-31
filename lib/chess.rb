@@ -34,9 +34,8 @@ class Chess
   end
 
   def menu_prompt
-    type("Enter 1 to start a new game.\n".green)
-    type("Enter 2 to load your saved game.\n\n".green)
-    type('Type your choice here, then press enter: '.yellow)
+    print_options('start_menu')
+    entry_prompt
     user_choice(gets.chomp.to_i)
   end
 
