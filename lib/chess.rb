@@ -33,7 +33,7 @@ class Chess
     menu_prompt
   end
 
-  def menu_prompt
+  def start_prompt
     print_options('start_menu')
     entry_prompt
     user_choice(gets.chomp.to_i)
