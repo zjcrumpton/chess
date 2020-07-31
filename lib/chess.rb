@@ -17,24 +17,20 @@ class Chess
     @teams = { white: WhiteTeam.new(@board, true) }
     @current_team = @teams[:white]
     @teams[:white].current_team = false
-    @board.flip!
+    flip_board
     @teams[:black] = BlackTeam.new(@board)
     @teams[:white].current_team = true
     @teams[:black].current_team = false
-    @board.flip!
+    flip_board
   end
 
   def switch_team
-    if @current_team == @teams[:white]
-      @teams[:white].current_team = false
-      @teams[:black].current_team = true
-      @current_team = @teams[:black]
+    if white_turn?
+      black_turn
     else
-      @teams[:white].current_team = true
-      @teams[:black].current_team = false
-      @current_team = @teams[:white]
+      white_turn
     end
-    @board.flip!
+    flip_board
   end
 
   def start #clean
