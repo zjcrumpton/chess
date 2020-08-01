@@ -23,15 +23,15 @@ module Display
 
   def print_alpha(position)
     if position == 'top'
-      print "                a  b  c  d  e  f  g  h \n"
+      print "                 a  b  c  d  e  f  g  h \n"
     else
-      print "                a  b  c  d  e  f  g  h \n\n"
+      print "                 a  b  c  d  e  f  g  h \n\n"
     end
   end
 
   def print_row_num(position)
     if position == 'left'
-      print "             #{@@row_num} "
+      print "              #{@@row_num} "
     else
       print " #{@@row_num}\n"
       @@row_num -= 1

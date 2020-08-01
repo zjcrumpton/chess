@@ -130,6 +130,10 @@ module Game
 
     @current_team.show_captured
   end
+
+  def remove_mock
+    @board.square_at(@choice).piece = nil
+  end
 end
 
 module Messages
@@ -156,9 +160,9 @@ module Messages
     type('Type your choice here, then press enter: '.yellow)
   end
 
-  def show_moves(choice)
+  def show_moves
     type("Valid Moves:\n".green)
-    @board.piece_at(choice).show_moves
+    @board.piece_at(@choice).show_moves
   end
 end
 
@@ -175,16 +179,16 @@ module VerifyInput
     end
   end
 
-  def valid?(choice)
-    if choice.length == 1
-      return true if choice == '1'
-    elsif choice.length == 2
-      return true if choice[0].match(/[a-h]/) && choice[1].match(/[0-8]/)
+  def valid_choice?
+    if @choice.length == 1
+      return true if @choice == '1'
+    elsif @choice.length == 2
+      return true if @choice[0].match(/[a-h]/) && @choice[1].match(/[0-8]/)
     end
     false
   end
 
-  def valid_piece_at?(choice)
-    true if @board.piece_at(choice).nil? == false || @board.piece_at(choice).team == @current_team
+  def valid_piece?
+    true if @board.piece_at(@choice).nil? == false && @board.piece_at(@choice).team == @current_team
   end
 end

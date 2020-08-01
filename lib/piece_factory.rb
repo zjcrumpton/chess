@@ -30,7 +30,7 @@ class PieceFactory
       @board.refind_moves
       @check = false if self.class == King
     else
-      puts("INVALID MOVE! PROTECT YOUR KING".red)
+      puts("INVALID MOVE! KEEP YOUR KING OUT OF CHECK!".red)
     end
   end
 
