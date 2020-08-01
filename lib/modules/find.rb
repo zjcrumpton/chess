@@ -46,6 +46,49 @@ module Find
     @squares[row][column]
   end
 
+  def square_to_alg(square)
+    square = square.location.to_s.split('')
+    column = square[4].to_i
+    row = square[1].to_i
+    column = case column
+             when 0
+              'a'
+             when 1
+              'b'
+             when 2
+               'c'
+             when 3
+               'd'
+             when 4
+               'e'
+             when 5
+               'f'
+             when 6
+               'g'
+             when 7
+               'h'
+            end
+    row = case row
+          when 0
+            '8'
+          when 1
+            '7'
+          when 2
+            '6'
+          when 3
+            '5'
+          when 4
+            '4'
+          when 5
+            '3'
+          when 6
+            '2'
+          when 7
+            '1'
+          end
+    "#{column}#{row}"
+  end
+
   def piece_at(square)
     find(square).piece
   end
@@ -66,7 +109,5 @@ module Find
         return square.piece
       end
     end
-#TODO - Add check and checkmate to main gameplay logic
-#TODO - Add menu functionality to take_turn prompt_playerish area
   end
 end

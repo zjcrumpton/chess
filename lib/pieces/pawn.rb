@@ -63,7 +63,7 @@ class Pawn < PieceFactory
   end
 
   def add_passant
-    return if below.piece.move_count < 1
+    return if @below.piece.move_count < 1
 
     @moves << @move
     @en_passants << @move

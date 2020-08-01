@@ -8,21 +8,57 @@ require './lib/modules/movement.rb'
 class PieceFactory
   include MoveList
   include MoveVisuals
-  attr_accessor :moves, :symbol, :team, :square, :move_count
+  attr_accessor :moves, :symbol, :team, :square, :move_count, :illegals
   def initialize(team, square)
     @symbol = team.symbols[self.class.to_s.to_sym]
     @team = team
     @board = team.board
     @square = square
     @move_count = 0
+    # @illegals = []
     find_moves
+  end
+
+  def find_illegals
+    @board.refind_moves
+
+    @board.squares.each do |row|
+      row.each do |square|
+        next if square.piece.nil?
+        next if square.piece.team != @team
+        square.piece.illegals = []
+        square.piece.moves.each do |move|
+          current_piece = square.piece
+          destination = @board.square_to_alg(move)
+          # square.piece.moves.delete(move) unless safe_king?(destination, current_piece)
+          current_piece.illegals << move unless safe_king?(destination, current_piece)
+        end
+      end
+    end
+  end
+
+  def safe_king?(destination, piece)
+    safe = legal?(destination, piece)
+    @board.square_at(destination).piece = @the_before
+    safe == true ? true : false
+  end
+
+  def legal?(destination, piece)
+    if @board.current_king.check?
+     @the_before = @board.square_at(destination).piece
+     new_piece = piece.class.new(team, @board.square_at(destination))
+     new_piece.move_count = move_count + 1
+     @board.square_at(destination).piece = new_piece
+     @board.refind_moves
+    end
+    return false if @board.current_king.check?
+    return true if @board.current_king.check? == false
   end
 
   def move_to(destination)
     @board.refind_moves
     return unless @moves.include?(@board.square_at(destination))
-    if protected_king?(destination)
-      @board.square_at(destination).piece = nil
+    if protect?(destination)
       remove_pieces(@board.square_at(destination))
       new_piece = self.class.new(team, @board.square_at(destination))
       new_piece.move_count = move_count + 1
@@ -34,9 +70,17 @@ class PieceFactory
     end
   end
 
+  #FIX THIS
+  def protect?(destination)
+    safe = protected_king?(destination)
+    @board.square_at(destination).piece = @before
+    return true if safe == true
+  end
+
   def protected_king?(destination)
     @board.refind_moves
      if @board.current_king.check?
+      @before = @board.square_at(destination).piece
       new_piece = self.class.new(team, @board.square_at(destination))
       new_piece.move_count = move_count + 1
       @board.square_at(destination).piece = new_piece

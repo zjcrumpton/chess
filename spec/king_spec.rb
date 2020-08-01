@@ -96,14 +96,4 @@ describe King do
       expect(game.board.piece_at('e2').check?).to eql(false)
     end
   end
-
-  describe "#checkmate" do
-    it "can be put in checkmate" do
-      game = Chess.new
-      expect(game.board.piece_at('e1').check?).to eql(false)
-      game.board.piece_at('d2').move_to('d4')
-      game.board.piece_at('e7').move_to('e5')
-      game.board.piece_at('f8').move_to('b4')
-    end
-  end
 end

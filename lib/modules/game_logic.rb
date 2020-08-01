@@ -116,13 +116,11 @@ module Game
   end
 
   def current_check?
-    true if @board.current_king.check?
+    true if @board.current_king.hard_check?
   end
 
   def current_checkmate?
-    if @board.current_king.checkmate?
-      game_over
-    end
+    true if @board.current_king.checkmate?
   end
 
   def show_captured
@@ -138,6 +136,7 @@ end
 
 module Messages
   def game_over
+    show_board
     switch_team
     puts "GAME OVER".red
     type("#{@current_team.name} is the winner.".green)

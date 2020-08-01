@@ -48,9 +48,12 @@ class Chess
   end
 
   def save_king
-    current_checkmate?
-    type("#{"YOUR KING IS IN CHECK,".red} #{@current_team.name.white}\n\n\n")
-    prompt_player
+    if current_checkmate?
+      game_over
+    else
+      type("#{'YOUR KING IS IN CHECK,'.red} #{@current_team.name.white}\n\n\n")
+      prompt_player
+    end
   end
 
   def prompt_player
@@ -95,31 +98,25 @@ class Chess
     return false if @piece.moves.empty?
 
     valid_m = true if @piece.moves.include?(@board.square_at(@choice))
-    invalid_input if valid_m == false 
-    valid_m == true ? move_piece : pick_move
+    invalid_input if valid_m == false
+    valid_m == true ? move_piece : pick_move(@piece)
   end
 
   def move_piece
-    if @piece.protected_king?(@choice)
-      remove_mock
+    if @piece.protect?(@choice)
       @piece.move_to(@choice)
       show_board
       switch_team
-      if @board.current_king.checkmate?
-        current_checkmate?
-      else
-        @to = @choice
-        type("Successful move! (#{@piece.class}: #{@from} => #{@to}) Flipping board....\n".green)
-        take_turn
-      end
+      @to = @choice
+      type("Successful move! (#{@piece.class}: #{@from} => #{@to}) Flipping board....\n".green)
+      take_turn
     else
       protect_king
     end
   end
 
   def protect_king
-    remove_mock
-    puts "INVALID MOVE! KEEP YOUR KING OUT OF CHECK!".red
+    puts 'INVALID MOVE! KEEP YOUR KING OUT OF CHECK!'.red
     save_king
   end
 end
