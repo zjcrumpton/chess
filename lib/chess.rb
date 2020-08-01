@@ -52,6 +52,7 @@ class Chess
       game_over
     else
       type("#{'YOUR KING IS IN CHECK,'.red} #{@current_team.name.white}\n\n\n")
+      # @board.refind_moves
       prompt_player
     end
   end

@@ -29,8 +29,7 @@ class PieceFactory
         square.piece.illegals = []
         square.piece.moves.each do |move|
           current_piece = square.piece
-          destination = @board.square_to_alg(move)
-          # square.piece.moves.delete(move) unless safe_king?(destination, current_piece)
+          destination = @board.square_to_alg(move)          
           current_piece.illegals << move unless safe_king?(destination, current_piece)
         end
       end

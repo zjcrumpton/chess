@@ -149,6 +149,7 @@ class King < PieceFactory
 
   def checkmate?
     find_illegals
+    @board.refind_moves
 
     @board.squares.each do |row|
       row.each do |square|
@@ -157,7 +158,7 @@ class King < PieceFactory
         next if square.piece.moves.empty?
       end
     end
-
+    @all_illegals = []
     @board.squares.each do |row|
       row.each do |square|
         next if square.piece.nil?
@@ -165,13 +166,10 @@ class King < PieceFactory
         next if square.piece.moves.empty?
         moves_clone = square.piece.moves.clone
         moves_clone.each do |move|
-          puts "inside nested loop: is this move illegal? #{square.piece.illegals.include?(move)} #{move.location}"
           square.piece.moves.delete(move) if square.piece.illegals.include?(move)
+          @all_illegals << move if square.piece.illegals.include?(move)
+          square.piece.moves.delete(move) if @all_illegals.include?(move)
         end
-        puts square.location
-        puts square.piece.moves
-        puts square.piece.moves.empty?
-        puts 'next'
         return false if square.piece.moves.empty? == false
       end
     end
