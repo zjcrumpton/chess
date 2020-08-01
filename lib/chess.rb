@@ -4,6 +4,7 @@ require 'require_all'
 require_relative 'board.rb'
 require './lib/modules/variable_typing.rb'
 require './lib/modules/game_logic.rb'
+require './lib/modules/save.rb'
 require 'pry'
 require_all './lib/teams'
 
@@ -13,11 +14,13 @@ class Chess
   include Game
   include VerifyInput
   include Messages
-  attr_accessor :board, :teams, :display, :choice
+  include Saveable
+  attr_accessor :board, :teams, :display, :choice, :game_state
 
   def initialize
     @board = Board.new
     set_board
+    @game_state = {}
   end
 
   def switch_team

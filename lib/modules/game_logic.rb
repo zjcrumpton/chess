@@ -90,7 +90,7 @@ module Game
       new_game
     when 2
       type("You chose: LOAD GAME\n\n".green)
-      puts 'load game'
+      save_game
     else
       invalid_input('input')
       entry_prompt
