@@ -1,0 +1,1018 @@
+---
+:board: &1 !ruby/object:Board
+  squares:
+  - &2
+    - &56 !ruby/object:Square
+      piece: &61 !ruby/object:Rook
+        symbol: " ♖ "
+        team: &3 !ruby/object:BlackTeam
+          board: *1
+          start_row: *2
+          pawn_row: &64
+          - &4 !ruby/object:Square
+            piece: !ruby/object:Pawn
+              symbol: " ♙ "
+              team: *3
+              board: *1
+              square: *4
+              move_count: 0
+              moves:
+              - &31 !ruby/object:Square
+                piece: 
+                row: 2
+                bg: :green
+                column: 0
+                location:
+                - 2
+                - 0
+                edge: true
+                check: true
+              - &65 !ruby/object:Square
+                piece: 
+                row: 3
+                bg: :blue
+                column: 0
+                location:
+                - 3
+                - 0
+                edge: true
+                check: false
+              en_passants: []
+              i: 1
+              move: &6 !ruby/object:Square
+                piece: 
+                row: 2
+                bg: :blue
+                column: 1
+                location:
+                - 2
+                - 1
+                edge: false
+                check: true
+            row: 1
+            bg: :blue
+            column: 0
+            location:
+            - 1
+            - 0
+            edge: true
+            check: true
+          - &5 !ruby/object:Square
+            piece: !ruby/object:Pawn
+              symbol: " ♙ "
+              team: *3
+              board: *1
+              square: *5
+              move_count: 0
+              moves:
+              - *6
+              - &30 !ruby/object:Square
+                piece: 
+                row: 3
+                bg: :green
+                column: 1
+                location:
+                - 3
+                - 1
+                edge: false
+                check: false
+              en_passants: []
+              i: 1
+              move: &8 !ruby/object:Square
+                piece: 
+                row: 2
+                bg: :green
+                column: 2
+                location:
+                - 2
+                - 2
+                edge: false
+                check: true
+            row: 1
+            bg: :green
+            column: 1
+            location:
+            - 1
+            - 1
+            edge: false
+            check: true
+          - &7 !ruby/object:Square
+            piece: !ruby/object:Pawn
+              symbol: " ♙ "
+              team: *3
+              board: *1
+              square: *7
+              move_count: 0
+              moves:
+              - *8
+              - &66 !ruby/object:Square
+                piece: 
+                row: 3
+                bg: :blue
+                column: 2
+                location:
+                - 3
+                - 2
+                edge: false
+                check: false
+              en_passants: []
+              i: 1
+              move: &10 !ruby/object:Square
+                piece: 
+                row: 2
+                bg: :blue
+                column: 3
+                location:
+                - 2
+                - 3
+                edge: false
+                check: true
+            row: 1
+            bg: :blue
+            column: 2
+            location:
+            - 1
+            - 2
+            edge: false
+            check: true
+          - &9 !ruby/object:Square
+            piece: !ruby/object:Pawn
+              symbol: " ♙ "
+              team: *3
+              board: *1
+              square: *9
+              move_count: 0
+              moves:
+              - *10
+              - &14 !ruby/object:Square
+                piece: 
+                row: 3
+                bg: :green
+                column: 3
+                location:
+                - 3
+                - 3
+                edge: false
+                check: true
+              en_passants: []
+              i: 1
+              move: &12 !ruby/object:Square
+                piece: 
+                row: 2
+                bg: :green
+                column: 4
+                location:
+                - 2
+                - 4
+                edge: false
+                check: true
+            row: 1
+            bg: :green
+            column: 3
+            location:
+            - 1
+            - 3
+            edge: false
+            check: true
+          - &11 !ruby/object:Square
+            piece: !ruby/object:Pawn
+              symbol: " ♙ "
+              team: *3
+              board: *1
+              square: *11
+              move_count: 0
+              moves:
+              - *12
+              - &46 !ruby/object:Square
+                piece: 
+                row: 3
+                bg: :blue
+                column: 4
+                location:
+                - 3
+                - 4
+                edge: false
+                check: false
+              en_passants: []
+              i: 1
+              move: &13 !ruby/object:Square
+                piece: !ruby/object:Knight
+                  symbol: " ♘ "
+                  team: *3
+                  board: *1
+                  square: *13
+                  move_count: 1
+                  moves:
+                  - *14
+                  - &45 !ruby/object:Square
+                    piece: !ruby/object:Pawn
+                      symbol: " ♟ "
+                      team: &15 !ruby/object:WhiteTeam
+                        board: *1
+                        start_row: &74
+                        - &16 !ruby/object:Square
+                          piece: &27 !ruby/object:Rook
+                            symbol: " ♜ "
+                            team: *15
+                            board: *1
+                            square: *16
+                            move_count: 0
+                            moves: []
+                            i: 1
+                            move: 
+                          row: 7
+                          bg: :blue
+                          column: 0
+                          location:
+                          - 7
+                          - 0
+                          edge: true
+                          check: false
+                        - &17 !ruby/object:Square
+                          piece: !ruby/object:Knight
+                            symbol: " ♞ "
+                            team: *15
+                            board: *1
+                            square: *17
+                            move_count: 0
+                            moves:
+                            - &33 !ruby/object:Square
+                              piece: 
+                              row: 5
+                              bg: :blue
+                              column: 0
+                              location:
+                              - 5
+                              - 0
+                              edge: true
+                              check: false
+                            - &18 !ruby/object:Square
+                              piece: 
+                              row: 5
+                              bg: :blue
+                              column: 2
+                              location:
+                              - 5
+                              - 2
+                              edge: false
+                              check: false
+                            i: 0
+                            move: *18
+                          row: 7
+                          bg: :green
+                          column: 1
+                          location:
+                          - 7
+                          - 1
+                          edge: false
+                          check: false
+                        - &19 !ruby/object:Square
+                          piece: !ruby/object:Bishop
+                            symbol: " ♝ "
+                            team: *15
+                            board: *1
+                            square: *19
+                            move_count: 0
+                            moves: []
+                            i: 1
+                            move: 
+                          row: 7
+                          bg: :blue
+                          column: 2
+                          location:
+                          - 7
+                          - 2
+                          edge: false
+                          check: false
+                        - &20 !ruby/object:Square
+                          piece: !ruby/object:Queen
+                            symbol: " ♛ "
+                            team: *15
+                            board: *1
+                            square: *20
+                            move_count: 0
+                            moves:
+                            - &22 !ruby/object:Square
+                              piece: 
+                              row: 6
+                              bg: :green
+                              column: 4
+                              location:
+                              - 6
+                              - 4
+                              edge: false
+                              check: false
+                            - &24 !ruby/object:Square
+                              piece: 
+                              row: 5
+                              bg: :green
+                              column: 5
+                              location:
+                              - 5
+                              - 5
+                              edge: false
+                              check: false
+                            - &43 !ruby/object:Square
+                              piece: 
+                              row: 4
+                              bg: :green
+                              column: 6
+                              location:
+                              - 4
+                              - 6
+                              edge: false
+                              check: true
+                            - &48 !ruby/object:Square
+                              piece: 
+                              row: 3
+                              bg: :green
+                              column: 7
+                              location:
+                              - 3
+                              - 7
+                              edge: false
+                              check: true
+                            i: 1
+                            move: 
+                          row: 7
+                          bg: :green
+                          column: 3
+                          location:
+                          - 7
+                          - 3
+                          edge: false
+                          check: false
+                        - &21 !ruby/object:Square
+                          piece: !ruby/object:King
+                            symbol: " ♚ "
+                            team: *15
+                            board: *1
+                            square: *21
+                            move_count: 0
+                            moves:
+                            - *22
+                            castles: []
+                            i: 1
+                            move: &23 !ruby/object:Square
+                              piece: !ruby/object:Knight
+                                symbol: " ♞ "
+                                team: *15
+                                board: *1
+                                square: *23
+                                move_count: 0
+                                moves:
+                                - *24
+                                - *22
+                                - &25 !ruby/object:Square
+                                  piece: 
+                                  row: 5
+                                  bg: :green
+                                  column: 7
+                                  location:
+                                  - 5
+                                  - 7
+                                  edge: false
+                                  check: false
+                                i: 0
+                                move: *25
+                              row: 7
+                              bg: :blue
+                              column: 6
+                              location:
+                              - 7
+                              - 6
+                              edge: false
+                              check: false
+                            rook_square: &26 !ruby/object:Square
+                              piece: &28 !ruby/object:Rook
+                                symbol: " ♜ "
+                                team: *15
+                                board: *1
+                                square: *26
+                                move_count: 0
+                                moves: []
+                                i: 1
+                                move: 
+                              row: 7
+                              bg: :green
+                              column: 7
+                              location:
+                              - 7
+                              - 7
+                              edge: false
+                              check: false
+                            left_rook: *27
+                            right_rook: *28
+                          row: 7
+                          bg: :blue
+                          column: 4
+                          location:
+                          - 7
+                          - 4
+                          edge: false
+                          check: false
+                        - &29 !ruby/object:Square
+                          piece: !ruby/object:Bishop
+                            symbol: " ♝ "
+                            team: *15
+                            board: *1
+                            square: *29
+                            move_count: 0
+                            moves:
+                            - *22
+                            - &38 !ruby/object:Square
+                              piece: 
+                              row: 5
+                              bg: :green
+                              column: 3
+                              location:
+                              - 5
+                              - 3
+                              edge: false
+                              check: false
+                            - &37 !ruby/object:Square
+                              piece: 
+                              row: 4
+                              bg: :green
+                              column: 2
+                              location:
+                              - 4
+                              - 2
+                              edge: false
+                              check: false
+                            - *30
+                            - *31
+                            i: 1
+                            move: 
+                          row: 7
+                          bg: :green
+                          column: 5
+                          location:
+                          - 7
+                          - 5
+                          edge: false
+                          check: false
+                        - *23
+                        - *26
+                        pawn_row: &73
+                        - &32 !ruby/object:Square
+                          piece: !ruby/object:Pawn
+                            symbol: " ♟ "
+                            team: *15
+                            board: *1
+                            square: *32
+                            move_count: 0
+                            moves:
+                            - *33
+                            - &68 !ruby/object:Square
+                              piece: 
+                              row: 4
+                              bg: :green
+                              column: 0
+                              location:
+                              - 4
+                              - 0
+                              edge: true
+                              check: false
+                            en_passants: []
+                            i: 1
+                            move: &35 !ruby/object:Square
+                              piece: 
+                              row: 5
+                              bg: :green
+                              column: 1
+                              location:
+                              - 5
+                              - 1
+                              edge: false
+                              check: false
+                          row: 6
+                          bg: :green
+                          column: 0
+                          location:
+                          - 6
+                          - 0
+                          edge: true
+                          check: false
+                        - &34 !ruby/object:Square
+                          piece: !ruby/object:Pawn
+                            symbol: " ♟ "
+                            team: *15
+                            board: *1
+                            square: *34
+                            move_count: 0
+                            moves:
+                            - *35
+                            - &69 !ruby/object:Square
+                              piece: 
+                              row: 4
+                              bg: :blue
+                              column: 1
+                              location:
+                              - 4
+                              - 1
+                              edge: false
+                              check: false
+                            en_passants: []
+                            i: 1
+                            move: *18
+                          row: 6
+                          bg: :blue
+                          column: 1
+                          location:
+                          - 6
+                          - 1
+                          edge: false
+                          check: false
+                        - &36 !ruby/object:Square
+                          piece: !ruby/object:Pawn
+                            symbol: " ♟ "
+                            team: *15
+                            board: *1
+                            square: *36
+                            move_count: 0
+                            moves:
+                            - *18
+                            - *37
+                            en_passants: []
+                            i: 1
+                            move: *38
+                          row: 6
+                          bg: :green
+                          column: 2
+                          location:
+                          - 6
+                          - 2
+                          edge: false
+                          check: false
+                        - &39 !ruby/object:Square
+                          piece: !ruby/object:Pawn
+                            symbol: " ♟ "
+                            team: *15
+                            board: *1
+                            square: *39
+                            move_count: 0
+                            moves:
+                            - *38
+                            - &47 !ruby/object:Square
+                              piece: 
+                              row: 4
+                              bg: :blue
+                              column: 3
+                              location:
+                              - 4
+                              - 3
+                              edge: false
+                              check: false
+                            en_passants: []
+                            i: 1
+                            move: &72 !ruby/object:Square
+                              piece: 
+                              row: 5
+                              bg: :blue
+                              column: 4
+                              location:
+                              - 5
+                              - 4
+                              edge: false
+                              check: false
+                          row: 6
+                          bg: :blue
+                          column: 3
+                          location:
+                          - 6
+                          - 3
+                          edge: false
+                          check: false
+                        - *22
+                        - &40 !ruby/object:Square
+                          piece: !ruby/object:Pawn
+                            symbol: " ♟ "
+                            team: *15
+                            board: *1
+                            square: *40
+                            move_count: 0
+                            moves:
+                            - *24
+                            - &70 !ruby/object:Square
+                              piece: 
+                              row: 4
+                              bg: :blue
+                              column: 5
+                              location:
+                              - 4
+                              - 5
+                              edge: false
+                              check: false
+                            en_passants: []
+                            i: 1
+                            move: &42 !ruby/object:Square
+                              piece: 
+                              row: 5
+                              bg: :blue
+                              column: 6
+                              location:
+                              - 5
+                              - 6
+                              edge: false
+                              check: false
+                          row: 6
+                          bg: :blue
+                          column: 5
+                          location:
+                          - 6
+                          - 5
+                          edge: false
+                          check: false
+                        - &41 !ruby/object:Square
+                          piece: !ruby/object:Pawn
+                            symbol: " ♟ "
+                            team: *15
+                            board: *1
+                            square: *41
+                            move_count: 0
+                            moves:
+                            - *42
+                            - *43
+                            en_passants: []
+                            i: 1
+                            move: *25
+                          row: 6
+                          bg: :green
+                          column: 6
+                          location:
+                          - 6
+                          - 6
+                          edge: false
+                          check: false
+                        - &44 !ruby/object:Square
+                          piece: !ruby/object:Pawn
+                            symbol: " ♟ "
+                            team: *15
+                            board: *1
+                            square: *44
+                            move_count: 0
+                            moves:
+                            - *25
+                            - &71 !ruby/object:Square
+                              piece: 
+                              row: 4
+                              bg: :blue
+                              column: 7
+                              location:
+                              - 4
+                              - 7
+                              edge: false
+                              check: false
+                            en_passants: []
+                            i: 1
+                            move: 
+                          row: 6
+                          bg: :blue
+                          column: 7
+                          location:
+                          - 6
+                          - 7
+                          edge: false
+                          check: false
+                        queen_square: 3
+                        king_square: 4
+                        color: white
+                        symbols:
+                          :Pawn: " ♟ "
+                          :Rook: " ♜ "
+                          :Knight: " ♞ "
+                          :Bishop: " ♝ "
+                          :Queen: " ♛ "
+                          :King: " ♚ "
+                        captured: []
+                        current_team: true
+                        name: Zac
+                      board: *1
+                      square: *45
+                      move_count: 1
+                      moves:
+                      - *46
+                      en_passants: []
+                      i: 1
+                      move: &51 !ruby/object:Square
+                        piece: 
+                        row: 3
+                        bg: :green
+                        column: 5
+                        location:
+                        - 3
+                        - 5
+                        edge: false
+                        check: false
+                      below: *47
+                    row: 4
+                    bg: :green
+                    column: 4
+                    location:
+                    - 4
+                    - 4
+                    edge: false
+                    check: true
+                  - *43
+                  - *48
+                  - &49 !ruby/object:Square
+                    piece: 
+                    row: 0
+                    bg: :green
+                    column: 6
+                    location:
+                    - 0
+                    - 6
+                    edge: true
+                    check: true
+                  i: 0
+                  move: *49
+                row: 2
+                bg: :blue
+                column: 5
+                location:
+                - 2
+                - 5
+                edge: false
+                check: true
+            row: 1
+            bg: :blue
+            column: 4
+            location:
+            - 1
+            - 4
+            edge: false
+            check: true
+          - &50 !ruby/object:Square
+            piece: !ruby/object:Pawn
+              symbol: " ♙ "
+              team: *3
+              board: *1
+              square: *50
+              move_count: 0
+              moves:
+              - *12
+              - *51
+              en_passants: []
+              i: 1
+              move: &53 !ruby/object:Square
+                piece: 
+                row: 2
+                bg: :green
+                column: 6
+                location:
+                - 2
+                - 6
+                edge: false
+                check: true
+            row: 1
+            bg: :green
+            column: 5
+            location:
+            - 1
+            - 5
+            edge: false
+            check: true
+          - &52 !ruby/object:Square
+            piece: !ruby/object:Pawn
+              symbol: " ♙ "
+              team: *3
+              board: *1
+              square: *52
+              move_count: 0
+              moves:
+              - *53
+              - &67 !ruby/object:Square
+                piece: 
+                row: 3
+                bg: :blue
+                column: 6
+                location:
+                - 3
+                - 6
+                edge: false
+                check: false
+              en_passants: []
+              i: 1
+              move: &55 !ruby/object:Square
+                piece: 
+                row: 2
+                bg: :blue
+                column: 7
+                location:
+                - 2
+                - 7
+                edge: false
+                check: true
+            row: 1
+            bg: :blue
+            column: 6
+            location:
+            - 1
+            - 6
+            edge: false
+            check: true
+          - &54 !ruby/object:Square
+            piece: !ruby/object:Pawn
+              symbol: " ♙ "
+              team: *3
+              board: *1
+              square: *54
+              move_count: 0
+              moves:
+              - *55
+              - *48
+              en_passants: []
+              i: 1
+              move: 
+            row: 1
+            bg: :green
+            column: 7
+            location:
+            - 1
+            - 7
+            edge: false
+            check: true
+          queen_square: 4
+          king_square: 3
+          color: black
+          symbols:
+            :Pawn: " ♙ "
+            :Rook: " ♖ "
+            :Knight: " ♘ "
+            :Bishop: " ♗ "
+            :Queen: " ♕ "
+            :King: " ♔ "
+          current_team: false
+          captured: []
+          name: Alex
+        board: *1
+        square: *56
+        move_count: 0
+        moves: []
+        i: 1
+        move: *4
+      row: 0
+      bg: :green
+      column: 0
+      location:
+      - 0
+      - 0
+      edge: true
+      check: false
+    - &57 !ruby/object:Square
+      piece: !ruby/object:Knight
+        symbol: " ♘ "
+        team: *3
+        board: *1
+        square: *57
+        move_count: 0
+        moves:
+        - *31
+        - *8
+        i: 0
+        move: 
+      row: 0
+      bg: :blue
+      column: 1
+      location:
+      - 0
+      - 1
+      edge: true
+      check: true
+    - &58 !ruby/object:Square
+      piece: !ruby/object:Bishop
+        symbol: " ♗ "
+        team: *3
+        board: *1
+        square: *58
+        move_count: 0
+        moves: []
+        i: 1
+        move: *9
+      row: 0
+      bg: :green
+      column: 2
+      location:
+      - 0
+      - 2
+      edge: true
+      check: true
+    - &59 !ruby/object:Square
+      piece: !ruby/object:Queen
+        symbol: " ♕ "
+        team: *3
+        board: *1
+        square: *59
+        move_count: 0
+        moves: []
+        i: 1
+        move: *11
+      row: 0
+      bg: :blue
+      column: 3
+      location:
+      - 0
+      - 3
+      edge: true
+      check: true
+    - &60 !ruby/object:Square
+      piece: !ruby/object:King
+        symbol: " ♔ "
+        team: *3
+        board: *1
+        square: *60
+        move_count: 0
+        moves: []
+        castles: []
+        i: 1
+        move: *50
+        rook_square: *56
+        right_rook: *61
+      row: 0
+      bg: :green
+      column: 4
+      location:
+      - 0
+      - 4
+      edge: true
+      check: true
+    - &62 !ruby/object:Square
+      piece: !ruby/object:Bishop
+        symbol: " ♗ "
+        team: *3
+        board: *1
+        square: *62
+        move_count: 0
+        moves: []
+        i: 1
+        move: *52
+      row: 0
+      bg: :blue
+      column: 5
+      location:
+      - 0
+      - 5
+      edge: true
+      check: true
+    - *49
+    - &63 !ruby/object:Square
+      piece: !ruby/object:Rook
+        symbol: " ♖ "
+        team: *3
+        board: *1
+        square: *63
+        move_count: 0
+        moves:
+        - *49
+        i: 1
+        move: *54
+      row: 0
+      bg: :blue
+      column: 7
+      location:
+      - 0
+      - 7
+      edge: true
+      check: false
+  - *64
+  - - *31
+    - *6
+    - *8
+    - *10
+    - *12
+    - *13
+    - *53
+    - *55
+  - - *65
+    - *30
+    - *66
+    - *14
+    - *46
+    - *51
+    - *67
+    - *48
+  - - *68
+    - *69
+    - *37
+    - *47
+    - *45
+    - *70
+    - *43
+    - *71
+  - - *33
+    - *35
+    - *18
+    - *38
+    - *72
+    - *24
+    - *42
+    - *25
+  - *73
+  - *74
+  current_team: !ruby/class 'WhiteTeam'
+:teams:
+  :white: *15
+  :black: *3
+:current_team: *15

@@ -73,7 +73,7 @@ module Game
       entry_prompt
     when 'player_prompt'
       puts "Enter coordinates (IE: a2) to select a piece.".green
-      puts "Enter 1 to see the other options menu.".green
+      puts "Enter 1 to save you game.".green
       entry_prompt
     when 'move'
       puts "Enter coordinates (IE: a4) to select a location.".green
@@ -90,7 +90,7 @@ module Game
       new_game
     when 2
       type("You chose: LOAD GAME\n\n".green)
-      save_game
+      load_game
     else
       invalid_input('input')
       entry_prompt

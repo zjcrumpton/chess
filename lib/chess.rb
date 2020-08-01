@@ -66,7 +66,7 @@ class Chess
     @choice = gets.chomp
 
     if valid_choice?
-      @choice == '1' ? puts('menu') : select_piece
+      @choice == '1' ? save_game : select_piece
     else
       invalid_input('input')
       prompt_player
