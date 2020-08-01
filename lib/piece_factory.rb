@@ -15,7 +15,6 @@ class PieceFactory
     @board = team.board
     @square = square
     @move_count = 0
-    # @illegals = []
     find_moves
   end
 
@@ -98,7 +97,6 @@ class PieceFactory
   end
 
   def capture(destination)
-    @team.captured << destination.piece unless destination.piece.nil?
     capture_en_passant(destination) unless @en_passants.nil?
     destination.piece = nil
   end
@@ -107,7 +105,6 @@ class PieceFactory
     return unless @en_passants.include?(destination)
 
     en_passant_piece = @board.squares[destination.row + 1][destination.column]
-    @team.captured << en_passant_piece.piece
     en_passant_piece.piece = nil
   end
 

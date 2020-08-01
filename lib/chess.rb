@@ -59,7 +59,6 @@ class Chess
 
   def prompt_player
     show_board
-    show_captured
     print_options('player_prompt')
     @choice = gets.chomp
 

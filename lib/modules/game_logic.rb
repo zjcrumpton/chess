@@ -123,12 +123,6 @@ module Game
     true if @board.current_king.checkmate?
   end
 
-  def show_captured
-    return if @current_team.captured.empty?
-
-    @current_team.show_captured
-  end
-
   def remove_mock
     @board.square_at(@choice).piece = nil
   end
