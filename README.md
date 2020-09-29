@@ -12,3 +12,4 @@ Features:
 
 It is recommended that you play with your terminal in full-screen mode, zoomed into a comfortable font-size.
 
+To play, clone the repo and run 'ruby main.rb'
